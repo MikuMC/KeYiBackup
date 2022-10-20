@@ -1,8 +1,13 @@
-<img src="https://user-images.githubusercontent.com/83630775/196994084-2c53ac23-f4be-4b90-b6fc-1b0ba65ea1b8.png" width="80">
-<h1>KeYi</h1>
+<img src="https://user-images.githubusercontent.com/83630775/196994084-2c53ac23-f4be-4b90-b6fc-1b0ba65ea1b8.png" alt="KeYi's logo" align="right" width="300">
+<div align="left">
+  <h1>KeYi</h1>
+  <h3>⚡ The next generation Minecraft server software aims to the balance of performance and stability.</h3>
+  <h5>This project is still under heavy development, use it at your own risk!</h5>
 
-[![Discord](https://img.shields.io/discord/1030133252134027304?color=%235865f2&label=Discord&logo=discord&logoColor=white&style=flat-square)](https://discord.gg/Sm2NsY5dpV)
+[![Discord](https://img.shields.io/discord/1030133252134027304?color=%235865f2&label=Discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/Sm2NsY5dpV)
+</div>
 
-⚡ The next generation Minecraft server software aims to the balance of performance and stability.
+# Features
 
-This project is still **under heavy development**, use it at your own risk.
+- Multithreaded entity tracker (Petal)
+- Async path finding (Petal)
