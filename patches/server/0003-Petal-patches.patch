@@ -3,7 +3,7 @@ From: peaches94 <peachescu94@gmail.com>
 Date: Sun, 26 Jun 2022 16:51:37 -0500
 Subject: [PATCH] Petal patches
 
-Original code by Bloom-host, licensed under GPL-3.0.
+Original code by Bloom-host, licensed under GNU Lesser General Public License v3.0
 You can find the original code on https://github.com/Bloom-host/Petal
 
 diff --git a/src/main/java/host/bloom/pathfinding/AsyncPath.java b/src/main/java/host/bloom/pathfinding/AsyncPath.java
