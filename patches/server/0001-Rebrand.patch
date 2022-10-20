@@ -110,6 +110,19 @@ index fba5dbdb7bcbb55400ef18342c9b54612972a718..bf7283af7537385ce429aedc394d97e6
  
          switch (distance) {
              case -1:
+diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+index f9508a26b2e764e752da3d2c9f43a9d7de19dd27..4f029b96bf8deee597dbb56974e4519a1422f96d 100644
+--- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
++++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+@@ -249,7 +249,7 @@ import javax.annotation.Nullable; // Paper
+ import javax.annotation.Nonnull; // Paper
+ 
+ public final class CraftServer implements Server {
+-    private final String serverName = "Purpur"; // Paper // Purpur
++    private final String serverName = "KeYi"; // Paper // Purpur // KeYi
+     private final String serverVersion;
+     private final String bukkitVersion = Versioning.getBukkitVersion();
+     private final Logger logger = Logger.getLogger("Minecraft");
 diff --git a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
 index fb87620c742ff7912f5e8ccd2a7930dd605576d9..d779212cbb719a1d923a24823135c5d3543ae65c 100644
 --- a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
