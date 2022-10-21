@@ -8,7 +8,7 @@ env:
   MC_VERSION: "1.19.2"
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Set env
         run: |
@@ -17,9 +17,9 @@ jobs:
           echo "BUILD_NUMBER=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
           export BUILD_NUMBER=${{ env.workflow }}
       - name: Checkout Git Repository
-        uses: actions/checkout@v3.0.2
+        uses: actions/checkout@v3
       - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v1.0.4
+        uses: gradle/wrapper-validation-action@master
       - name: Set up JDK
         uses: graalvm/setup-graalvm@v1
         with:
