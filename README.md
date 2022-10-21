@@ -17,3 +17,8 @@
 - **(WIP)** Faster hopper algorithm.
 - **(WIP)** Faster fluid algorithm.
 - And more...
+
+# Contributing
+
+We only accept contributions from people who can speak Chinese.<br>
+Join our Discord or QQ group for more information.
