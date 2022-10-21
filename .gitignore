@@ -10,6 +10,13 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# Intellij
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
 # Package Files #
 *.jar
 *.war
@@ -27,3 +34,7 @@ hs_err_pid*
 
 # Ignore Gradle build output directory
 build
+
+# KeYi
+/KeYi-API/
+/KeYi-Server/
