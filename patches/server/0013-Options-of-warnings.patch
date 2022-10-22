@@ -1,31 +1,48 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: nostalgic853 <yuu8583@proton.me>
-Date: Sat, 22 Oct 2022 17:42:55 +0800
-Subject: [PATCH] Let users choose if we should warn while running in offline
- mode
+Date: Sat, 22 Oct 2022 17:23:09 +0800
+Subject: [PATCH] Options of warnings
 
+Let users decide if we should warn while running in a root user
+
+Let users decide if we should warn while running in offline mode
+
+Let users decide if we should warn while running in proxy mode
 
 diff --git a/src/main/java/cc/keyimc/keyi/KeyiConfig.java b/src/main/java/cc/keyimc/keyi/KeyiConfig.java
-index 1b20dbc56dcbd68aca45444f3f313ef77ce74423..ed570a7d344507066ed106ba6ea3ceb806432d27 100644
+index bc9403d002ef24e71be67a962d099f5d73db9540..e4019f346c88acc6909589916f47dc8fe1dc5d18 100644
 --- a/src/main/java/cc/keyimc/keyi/KeyiConfig.java
 +++ b/src/main/java/cc/keyimc/keyi/KeyiConfig.java
-@@ -134,8 +134,10 @@ public final class KeyiConfig {
+@@ -132,4 +132,14 @@ public final class KeyiConfig {
+     public static void reload() {
+         KeyiConfig.init((File) MinecraftServer.getServer().options.valueOf("keyi-settings"));
      }
- 
-     public static boolean enableRootUserWarning = true;
++
++    public static boolean enableRootUserWarning = true;
 +    public static boolean enableOfflineModeWarning = true;
- 
-     public static void misc() {
-         enableRootUserWarning = getBoolean("misc.enable-root-user-warning", enableRootUserWarning);
++    public static boolean enableProxyUnsafeWarning = true;
++
++    public static void misc() {
++        enableRootUserWarning = getBoolean("misc.enable-root-user-warning", enableRootUserWarning);
 +        enableOfflineModeWarning = getBoolean("misc.enable-offline-mode-warning", enableOfflineModeWarning);
-     }
++        enableProxyUnsafeWarning = getBoolean("misc.enable-proxy-unsafe-warning", enableProxyUnsafeWarning);
++    }
  }
 \ No newline at end of file
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-index 16a38506db85f553f54132e808e633ea15f500bf..77ebd0c51b38a8094e4d0c4b6384fa76ba99ae5f 100644
+index ca0ddafe66dd5d02b1e96b1fc1c574490b68e6d4..383045ae681d5366761c807a0032156203cdf9c9 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-@@ -326,8 +326,13 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+@@ -185,7 +185,7 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+         }
+ 
+         // Paper start - detect running as root
+-        if (io.papermc.paper.util.ServerEnvironment.userIsRootOrAdmin()) {
++        if (io.papermc.paper.util.ServerEnvironment.userIsRootOrAdmin() && cc.keyimc.keyi.KeyiConfig.enableRootUserWarning) { // KeYi start - let user decide if we should warn
+             DedicatedServer.LOGGER.warn("****************************");
+             DedicatedServer.LOGGER.warn("YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.");
+             DedicatedServer.LOGGER.warn("YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.");
+@@ -326,10 +326,15 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
          // CraftBukkit end
  
          if (!this.usesAuthentication()) {
@@ -39,8 +56,11 @@ index 16a38506db85f553f54132e808e633ea15f500bf..77ebd0c51b38a8094e4d0c4b6384fa76
 +            }
 +            // KeYi end
              // Spigot start
-             if (io.papermc.paper.configuration.GlobalConfiguration.get().proxies.isProxyOnlineMode()) { // Purpur
+-            if (io.papermc.paper.configuration.GlobalConfiguration.get().proxies.isProxyOnlineMode()) { // Purpur
++            if (io.papermc.paper.configuration.GlobalConfiguration.get().proxies.isProxyOnlineMode() && cc.keyimc.keyi.KeyiConfig.enableProxyUnsafeWarning) { // Purpur // KeYi - Let users decide if we should warn while running in proxy mode
                  DedicatedServer.LOGGER.warn("Whilst this makes it possible to use BungeeCord or Velocity, unless access to your server is properly restricted, it also opens up the ability for hackers to connect with any username they choose."); // Purpur
+                 DedicatedServer.LOGGER.warn("Please see http://www.spigotmc.org/wiki/firewall-guide/ for further information.");
+             } else {
 @@ -337,7 +342,6 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
                  DedicatedServer.LOGGER.warn("You will not be offered any support as long as the server allows offline-mode players to join."); // Purpur
              }
