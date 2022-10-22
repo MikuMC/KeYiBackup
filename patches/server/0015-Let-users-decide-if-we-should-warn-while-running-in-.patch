@@ -23,10 +23,10 @@ index ed570a7d344507066ed106ba6ea3ceb806432d27..e4019f346c88acc6909589916f47dc8f
  }
 \ No newline at end of file
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-index 1ff49a9074292207e01a7a07a42cff445cf96642..05c7380146cc3a8bb669432003034a3b0bd4cec4 100644
+index 77ebd0c51b38a8094e4d0c4b6384fa76ba99ae5f..383045ae681d5366761c807a0032156203cdf9c9 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-@@ -333,7 +333,7 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+@@ -334,7 +334,7 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
              }
              // KeYi end
              // Spigot start

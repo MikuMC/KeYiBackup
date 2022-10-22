@@ -22,10 +22,10 @@ index 1b20dbc56dcbd68aca45444f3f313ef77ce74423..ed570a7d344507066ed106ba6ea3ceb8
  }
 \ No newline at end of file
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-index 16a38506db85f553f54132e808e633ea15f500bf..1ff49a9074292207e01a7a07a42cff445cf96642 100644
+index 16a38506db85f553f54132e808e633ea15f500bf..77ebd0c51b38a8094e4d0c4b6384fa76ba99ae5f 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-@@ -326,8 +326,12 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+@@ -326,8 +326,13 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
          // CraftBukkit end
  
          if (!this.usesAuthentication()) {
@@ -35,8 +35,17 @@ index 16a38506db85f553f54132e808e633ea15f500bf..1ff49a9074292207e01a7a07a42cff44
 +            if (cc.keyimc.keyi.KeyiConfig.enableOfflineModeWarning) {
 +                DedicatedServer.LOGGER.warn("**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!");
 +                DedicatedServer.LOGGER.warn("The server will make no attempt to authenticate usernames. Beware.");
++                DedicatedServer.LOGGER.warn("To change this, set \"online-mode\" to \"true\" in the server.properties file."); // KeYi - move up
 +            }
 +            // KeYi end
              // Spigot start
              if (io.papermc.paper.configuration.GlobalConfiguration.get().proxies.isProxyOnlineMode()) { // Purpur
                  DedicatedServer.LOGGER.warn("Whilst this makes it possible to use BungeeCord or Velocity, unless access to your server is properly restricted, it also opens up the ability for hackers to connect with any username they choose."); // Purpur
+@@ -337,7 +342,6 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+                 DedicatedServer.LOGGER.warn("You will not be offered any support as long as the server allows offline-mode players to join."); // Purpur
+             }
+             // Spigot end
+-            DedicatedServer.LOGGER.warn("To change this, set \"online-mode\" to \"true\" in the server.properties file.");
+         }
+ 
+ 
