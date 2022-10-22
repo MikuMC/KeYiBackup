@@ -1,0 +1,42 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: nostalgic853 <yuu8583@proton.me>
+Date: Sat, 22 Oct 2022 17:42:55 +0800
+Subject: [PATCH] Let users choose if we should warn while running in offline
+ mode
+
+
+diff --git a/src/main/java/cc/keyimc/keyi/KeyiConfig.java b/src/main/java/cc/keyimc/keyi/KeyiConfig.java
+index 1b20dbc56dcbd68aca45444f3f313ef77ce74423..ed570a7d344507066ed106ba6ea3ceb806432d27 100644
+--- a/src/main/java/cc/keyimc/keyi/KeyiConfig.java
++++ b/src/main/java/cc/keyimc/keyi/KeyiConfig.java
+@@ -134,8 +134,10 @@ public final class KeyiConfig {
+     }
+ 
+     public static boolean enableRootUserWarning = true;
++    public static boolean enableOfflineModeWarning = true;
+ 
+     public static void misc() {
+         enableRootUserWarning = getBoolean("misc.enable-root-user-warning", enableRootUserWarning);
++        enableOfflineModeWarning = getBoolean("misc.enable-offline-mode-warning", enableOfflineModeWarning);
+     }
+ }
+\ No newline at end of file
+diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
+index 16a38506db85f553f54132e808e633ea15f500bf..1ff49a9074292207e01a7a07a42cff445cf96642 100644
+--- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
++++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
+@@ -326,8 +326,12 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+         // CraftBukkit end
+ 
+         if (!this.usesAuthentication()) {
+-            DedicatedServer.LOGGER.warn("**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!");
+-            DedicatedServer.LOGGER.warn("The server will make no attempt to authenticate usernames. Beware.");
++            // KeYi start - let users choose if we should warn while running in offline mode
++            if (cc.keyimc.keyi.KeyiConfig.enableOfflineModeWarning) {
++                DedicatedServer.LOGGER.warn("**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!");
++                DedicatedServer.LOGGER.warn("The server will make no attempt to authenticate usernames. Beware.");
++            }
++            // KeYi end
+             // Spigot start
+             if (io.papermc.paper.configuration.GlobalConfiguration.get().proxies.isProxyOnlineMode()) { // Purpur
+                 DedicatedServer.LOGGER.warn("Whilst this makes it possible to use BungeeCord or Velocity, unless access to your server is properly restricted, it also opens up the ability for hackers to connect with any username they choose."); // Purpur
