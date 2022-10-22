@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/83630775/196994084-2c53ac23-f4be-4b90-b6fc-1b0ba65ea1b8.png" alt="KeYi's logo" align="right" width="300">
+<img src="https://user-images.githubusercontent.com/83630775/196994084-2c53ac23-f4be-4b90-b6fc-1b0ba65ea1b8.png" alt="KeYi's logo" align="right" width="400">
 <div align="left">
   <h3><a href="https://github.com/KeYiMC/KeYi/blob/master/README_ZH.md">中文</a> | English</h3>
   <h1>KeYi</h1>
