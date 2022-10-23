@@ -49,7 +49,7 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
           title: "[${{ env.ref }}] #${{ env.workflow }}"
-          automatic_release_tag: ${{ env.ref }}-1.19.2-${{ env.workflow }}
+          automatic_release_tag: ${{ env.ref }}-${{ env.workflow }}
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           files: build/libs/keyi-stable-${{ env.MC_VERSION }}-${{ env.workflow }}.jar
-          prerelease: false
+          prerelease: true
