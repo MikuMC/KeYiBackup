@@ -5,7 +5,7 @@ Subject: [PATCH] Rebrand
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 2ee34f92e8a89b90448bbf710fdc0d5d6350e919..2e7df664f5a89d28cb07371fa97de5da54269f84 100644
+index 2ee34f92e8a89b90448bbf710fdc0d5d6350e919..f15f7470a591d8491055d0ac3205224f6735ea59 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -9,7 +9,7 @@ plugins {
@@ -29,7 +29,7 @@ index 2ee34f92e8a89b90448bbf710fdc0d5d6350e919..2e7df664f5a89d28cb07371fa97de5da
              "Main-Class" to "org.bukkit.craftbukkit.Main",
              "Implementation-Title" to "CraftBukkit",
 -            "Implementation-Version" to "git-Purpur-$implementationVersion",// Purpur
-+            "Implementation-Version" to "git-KeYi-$implementationVersion",// Purpur // KeYi
++            "Implementation-Version" to "git-KeYi-stable-$implementationVersion",// Purpur // KeYi
              "Implementation-Vendor" to date, // Paper
              "Specification-Title" to "Bukkit",
              "Specification-Version" to project.version,
@@ -56,7 +56,7 @@ index acd95cf1dc7f009b63e44e4404e1736283fd458e..3436a377f9c11d8f2a39af65c3370861
                  metrics.addCustomChart(new Metrics.DrilldownPie("java_version", () -> {
                      Map<String, Map<String, Integer>> map = new HashMap<>();
 diff --git a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
-index fba5dbdb7bcbb55400ef18342c9b54612972a718..bf7283af7537385ce429aedc394d97e6534ab621 100644
+index fba5dbdb7bcbb55400ef18342c9b54612972a718..fc65beba373834f4c6cf43f15e18b4655960a602 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
 @@ -20,7 +20,7 @@ import java.util.stream.StreamSupport;
@@ -74,8 +74,8 @@ index fba5dbdb7bcbb55400ef18342c9b54612972a718..bf7283af7537385ce429aedc394d97e6
      public Component getVersionMessage(@Nonnull String serverVersion) {
 -        String[] parts = serverVersion.substring("git-Purpur-".length()).split("[-\\s]"); // Purpur
 -        final Component updateMessage = getUpdateStatusMessage("PurpurMC/Purpur", "ver/" + getMinecraftVersion(), parts[0]); // Purpur
-+        String[] parts = serverVersion.substring("git-KeYi-".length()).split("[-\\s]"); // Purpur // KeYi
-+        final Component updateMessage = getUpdateStatusMessage("KeYiMC/KeYi", "master", parts[0]); // Purpur // KeYi
++        String[] parts = serverVersion.substring("git-KeYi-stable-".length()).split("[-\\s]"); // Purpur // KeYi
++        final Component updateMessage = getUpdateStatusMessage("KeYiMC/KeYi", "stable/1.19.2", parts[0]); // Purpur // KeYi
          final Component history = getHistory();
  
          return history != null ? Component.join(net.kyori.adventure.text.JoinConfiguration.separator(Component.newline()), history, updateMessage) : updateMessage; // Purpur
