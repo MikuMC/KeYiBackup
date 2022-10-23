@@ -10,7 +10,7 @@ Let users decide if we should warn while running in offline mode
 Let users decide if we should warn while running in proxy mode
 
 diff --git a/src/main/java/cc/keyimc/keyi/KeyiConfig.java b/src/main/java/cc/keyimc/keyi/KeyiConfig.java
-index bc9403d002ef24e71be67a962d099f5d73db9540..e4019f346c88acc6909589916f47dc8fe1dc5d18 100644
+index bc9403d002ef24e71be67a962d099f5d73db9540..5582c15a37fbbf74d2039ba15d67684f5294a46d 100644
 --- a/src/main/java/cc/keyimc/keyi/KeyiConfig.java
 +++ b/src/main/java/cc/keyimc/keyi/KeyiConfig.java
 @@ -132,4 +132,14 @@ public final class KeyiConfig {
@@ -22,7 +22,7 @@ index bc9403d002ef24e71be67a962d099f5d73db9540..e4019f346c88acc6909589916f47dc8f
 +    public static boolean enableOfflineModeWarning = true;
 +    public static boolean enableProxyUnsafeWarning = true;
 +
-+    public static void misc() {
++    private static void misc() {
 +        enableRootUserWarning = getBoolean("misc.enable-root-user-warning", enableRootUserWarning);
 +        enableOfflineModeWarning = getBoolean("misc.enable-offline-mode-warning", enableOfflineModeWarning);
 +        enableProxyUnsafeWarning = getBoolean("misc.enable-proxy-unsafe-warning", enableProxyUnsafeWarning);
