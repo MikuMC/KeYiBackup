@@ -1,8 +1,8 @@
-name: Build (main)
+name: Build (dev)
 on:
   push:
     branches:
-      - "main"
+      - "dev"
 
 env:
   MC_VERSION: "1.19.2"
@@ -52,4 +52,4 @@ jobs:
           automatic_release_tag: "main-latest"
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           files: "build/libs/keyi-${{ env.ref }}-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
-          prerelease: false
+          prerelease: true
