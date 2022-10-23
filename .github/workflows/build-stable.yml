@@ -52,4 +52,4 @@ jobs:
           automatic_release_tag: "stable-latest"
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           files: build/libs/keyi-stable-${{ env.MC_VERSION }}-${{ env.workflow }}.jar
-          prerelease: true
+          prerelease: false
