@@ -2,7 +2,7 @@ name: Build (stable/1.19.2)
 on:
   push:
     branches:
-      - "stable"
+      - "stable/1.19.2"
 
 env:
   MC_VERSION: "1.19.2"
