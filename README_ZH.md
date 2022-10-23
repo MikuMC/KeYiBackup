@@ -1,6 +1,5 @@
 <img src="https://user-images.githubusercontent.com/83630775/196994084-2c53ac23-f4be-4b90-b6fc-1b0ba65ea1b8.png" alt="KeYi's logo" align="right" width="400">
 <div align="left">
-  <h4>Also available in: <a href="https://github.com/KeYiMC/KeYi/blob/master/README.md">English</a></h4>
   <h1>KeYi</h1>
   <h3>⚡ 下一代 Minecraft 服务器软件，旨在平衡性能与稳定性。</h3>
   <h5>此项目仍在积极开发中，使用风险自负！</h5>
