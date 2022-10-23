@@ -1,8 +1,8 @@
-name: Build (stable/1.19.2)
+name: Build (main)
 on:
   push:
     branches:
-      - "stable/1.19.2"
+      - "main"
 
 env:
   MC_VERSION: "1.19.2"
@@ -44,12 +44,12 @@ jobs:
           export BUILD_NUMBER_111=${{ env.workflow }}
           ./gradlew createReobfPaperclipJar --stacktrace --no-daemon
       - name: Rename Jar
-        run: "mv build/libs/keyi-paperclip-${{ env.MC_VERSION }}-R0.1-SNAPSHOT-reobf.jar build/libs/keyi-stable-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
+        run: "mv build/libs/keyi-paperclip-${{ env.MC_VERSION }}-R0.1-SNAPSHOT-reobf.jar build/libs/keyi-${{ env.ref }}-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
       - name: Release Artifacts
         uses: marvinpinto/action-automatic-releases@latest
         with:
           title: "[${{ env.ref }}] #${{ env.workflow }}"
-          automatic_release_tag: "stable-latest"
+          automatic_release_tag: "main-latest"
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          files: build/libs/keyi-stable-${{ env.MC_VERSION }}-${{ env.workflow }}.jar
+          files: "build/libs/keyi-${{ env.ref }}-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
           prerelease: false
