@@ -205,10 +205,10 @@ index f597d65d56964297eeeed6c7e77703764178fee0..665c377e2d0d342f4dcc89c4cbdfcc9e
      public ChunkHolder.FullChunkStatus status;
  
 diff --git a/src/main/java/net/minecraft/server/level/ChunkMap.java b/src/main/java/net/minecraft/server/level/ChunkMap.java
-index 3203b953709ca7cb9172f5912a922131ad7ec9eb..3c99de7bc5b3c5159ad76f63d67877756f152385 100644
+index a2a4965aec45f3ff83703b636e46f5c545cfb48e..a693c4cbcaf9720ac9549edab32f02063607820a 100644
 --- a/src/main/java/net/minecraft/server/level/ChunkMap.java
 +++ b/src/main/java/net/minecraft/server/level/ChunkMap.java
-@@ -1237,8 +1237,37 @@ public class ChunkMap extends ChunkStorage implements ChunkHolder.PlayerProvider
+@@ -1237,9 +1237,38 @@ public class ChunkMap extends ChunkStorage implements ChunkHolder.PlayerProvider
          entity.tracker = null; // Paper - We're no longer tracked
      }
  
@@ -242,10 +242,11 @@ index 3203b953709ca7cb9172f5912a922131ad7ec9eb..3c99de7bc5b3c5159ad76f63d6787775
 +        }
 +        // petal end
 +
-+        this.level.timings.tracker1.startTiming();
-         //this.level.timings.tracker1.startTiming(); // Purpur
+         this.level.timings.tracker1.startTiming();
++        //this.level.timings.tracker1.startTiming(); // Purpur
          try {
              for (TrackedEntity tracker : this.entityMap.values()) {
+                 // update tracker entry
 @@ -1462,11 +1491,11 @@ public class ChunkMap extends ChunkStorage implements ChunkHolder.PlayerProvider
  
      public class TrackedEntity {

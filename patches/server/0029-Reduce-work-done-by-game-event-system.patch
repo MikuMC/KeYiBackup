@@ -11,7 +11,7 @@ You can find the original code on https://github.com/Bloom-host/Petal
 2. euclideangameeventdispatcher is not used concurrently so we ban that usage for improved performance with allays
 
 diff --git a/src/main/java/net/minecraft/server/level/ServerLevel.java b/src/main/java/net/minecraft/server/level/ServerLevel.java
-index 571a1cbee376032b6b9f36c9fe3f9199a3ad3197..92e7ba78e18efb8263475ecc076bc49e88b85e84 100644
+index 3ffa7b3440b65ba3a4af4488f6ca9506e5a2128b..eb5f39b572c2a53c78aa0324ed194428e75a30a7 100644
 --- a/src/main/java/net/minecraft/server/level/ServerLevel.java
 +++ b/src/main/java/net/minecraft/server/level/ServerLevel.java
 @@ -1703,6 +1703,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
@@ -41,7 +41,7 @@ index 22c309343299e60ed8028229b7f134109001ff35..d5947d29295ddc93ba8ac1c0fc61f7ba
          org.bukkit.craftbukkit.event.CraftEventFactory.sourceBlockOverride = blockEntity.getBlockPos(); // CraftBukkit - SPIGOT-7068: Add source block override, not the most elegant way but better than passing down a BlockPosition up to five methods deep.
          blockEntity.sculkSpreader.updateCursors(world, pos, world.getRandom(), true);
 diff --git a/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java b/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java
-index 620173eef4c2f30a97a4c2f8049ea01fcc60d0b2..bdf67c916fe435f3bd04a61cce6db93c606515ce 100644
+index 636c98d04eb4e14eab1fa208d9cb097e2ab7eef7..2ea38464a92d626127aecc41c3fc58d1cfb37e29 100644
 --- a/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java
 +++ b/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java
 @@ -84,7 +84,18 @@ public class LevelChunk extends ChunkAccess {
