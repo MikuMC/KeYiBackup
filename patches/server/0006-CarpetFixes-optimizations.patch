@@ -157,10 +157,10 @@ index e3e80db89c18588322ffdaa0f9fd85e398cb1471..d947011b80ee14e7aaf74af3d9081fc7
                  throw ERROR_INVALID_TICK_COUNT.create(j);
              } else {
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 74d361e7e96708653378b27d5c81a11c46033bc2..ede16b015b9dde07a7346e0bffde53082145798b 100644
+index 13c9cddf7ac0af16676050e3bcdf22b7475a0387..a444c8c57a2ab16eba45b0379841a69ff60a5586 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
-@@ -2790,7 +2790,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+@@ -2786,7 +2786,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
                      }
  
                      double overuseCount = (double)overuse/(double)MAX_CHUNK_EXEC_TIME;
