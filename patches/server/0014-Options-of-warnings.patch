@@ -30,7 +30,7 @@ index bc9403d002ef24e71be67a962d099f5d73db9540..5582c15a37fbbf74d2039ba15d67684f
  }
 \ No newline at end of file
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-index ca0ddafe66dd5d02b1e96b1fc1c574490b68e6d4..383045ae681d5366761c807a0032156203cdf9c9 100644
+index 9227cff62d675703785ad2eaebf6dcbb5adfbaa7..3e7dd41555263e8361db08d1380c767fe0ba8886 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 @@ -185,7 +185,7 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
@@ -42,7 +42,7 @@ index ca0ddafe66dd5d02b1e96b1fc1c574490b68e6d4..383045ae681d5366761c807a00321562
              DedicatedServer.LOGGER.warn("****************************");
              DedicatedServer.LOGGER.warn("YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.");
              DedicatedServer.LOGGER.warn("YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.");
-@@ -326,10 +326,15 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+@@ -330,10 +330,15 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
          // CraftBukkit end
  
          if (!this.usesAuthentication()) {
@@ -61,7 +61,7 @@ index ca0ddafe66dd5d02b1e96b1fc1c574490b68e6d4..383045ae681d5366761c807a00321562
                  DedicatedServer.LOGGER.warn("Whilst this makes it possible to use BungeeCord or Velocity, unless access to your server is properly restricted, it also opens up the ability for hackers to connect with any username they choose."); // Purpur
                  DedicatedServer.LOGGER.warn("Please see http://www.spigotmc.org/wiki/firewall-guide/ for further information.");
              } else {
-@@ -337,7 +342,6 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+@@ -341,7 +346,6 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
                  DedicatedServer.LOGGER.warn("You will not be offered any support as long as the server allows offline-mode players to join."); // Purpur
              }
              // Spigot end

@@ -1083,7 +1083,7 @@ index 6c27b22dd1d497687c0f4d3835e34149bcf952c1..445f21c3764d148de937f558e3f087ae
  
      public static Direction getNearest(double x, double y, double z) {
 diff --git a/src/main/java/net/minecraft/server/level/ServerLevel.java b/src/main/java/net/minecraft/server/level/ServerLevel.java
-index 92e7ba78e18efb8263475ecc076bc49e88b85e84..2a9219e0139670674319a7cf17ad664582b42715 100644
+index f13170b77f69c3ef31fb145ec244b112600b8a45..ba95c8ba2fdcb73065c2fc219f94528239751f33 100644
 --- a/src/main/java/net/minecraft/server/level/ServerLevel.java
 +++ b/src/main/java/net/minecraft/server/level/ServerLevel.java
 @@ -227,6 +227,13 @@ public class ServerLevel extends Level implements WorldGenLevel {
@@ -1662,7 +1662,7 @@ index 17e869074b8cf29a8c3280499a27e95179896750..97a5aec7da267b8b9f6d191c871316cc
          // Pufferfish start
          int arraySize = rules.keySet().stream().mapToInt(key -> key.gameRuleIndex).max().orElse(-1) + 1;
 diff --git a/src/main/java/net/minecraft/world/level/Level.java b/src/main/java/net/minecraft/world/level/Level.java
-index cf8693d02de53f1e02d55936f889c5724889e3f5..9f0126aedb94f74d01dc47112496160cc4e1f02c 100644
+index a6c58a6f2a69c4783570c29d300dd996c01c014e..dc3f2b26e19619adf80827d26b95209ded973c2a 100644
 --- a/src/main/java/net/minecraft/world/level/Level.java
 +++ b/src/main/java/net/minecraft/world/level/Level.java
 @@ -117,9 +117,9 @@ public abstract class Level implements LevelAccessor, AutoCloseable {

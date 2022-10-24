@@ -340,7 +340,7 @@ index 5962f7a2b185d7d54a0f9e341a4fdf6e6f1c1ec5..8c80520396bc7e34bac25354c1fcdb38
          worldUpgrader.convert();
      }
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index a444c8c57a2ab16eba45b0379841a69ff60a5586..ede16b015b9dde07a7346e0bffde53082145798b 100644
+index 13c9cddf7ac0af16676050e3bcdf22b7475a0387..74d361e7e96708653378b27d5c81a11c46033bc2 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -294,6 +294,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
@@ -416,7 +416,7 @@ index ef6ff78af2ae747e939895b82ee9d11c75012dcd..05d011ff1053fafd9b1d440911fbe123
      }
  }
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-index 383045ae681d5366761c807a0032156203cdf9c9..3e7dd41555263e8361db08d1380c767fe0ba8886 100644
+index ca0ddafe66dd5d02b1e96b1fc1c574490b68e6d4..9227cff62d675703785ad2eaebf6dcbb5adfbaa7 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 @@ -213,6 +213,10 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
@@ -444,10 +444,10 @@ index 01ca7156d86243a80cd343a2a66be9ebedcc3b7c..852ec490e2a53803ca72a3ec0d994cbe
      private WorldGenSettings worldGenSettings;
  
 diff --git a/src/main/java/net/minecraft/server/level/ServerLevel.java b/src/main/java/net/minecraft/server/level/ServerLevel.java
-index 2a9219e0139670674319a7cf17ad664582b42715..ba95c8ba2fdcb73065c2fc219f94528239751f33 100644
+index 92e7ba78e18efb8263475ecc076bc49e88b85e84..f13170b77f69c3ef31fb145ec244b112600b8a45 100644
 --- a/src/main/java/net/minecraft/server/level/ServerLevel.java
 +++ b/src/main/java/net/minecraft/server/level/ServerLevel.java
-@@ -533,7 +533,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -526,7 +526,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
      public ServerLevel(MinecraftServer minecraftserver, Executor executor, LevelStorageSource.LevelStorageAccess convertable_conversionsession, PrimaryLevelData iworlddataserver, ResourceKey<Level> resourcekey, LevelStem worlddimension, ChunkProgressListener worldloadlistener, boolean flag, long i, List<CustomSpawner> list, boolean flag1, org.bukkit.World.Environment env, org.bukkit.generator.ChunkGenerator gen, org.bukkit.generator.BiomeProvider biomeProvider) {
          // Holder holder = worlddimension.typeHolder(); // CraftBukkit - decompile error
          // Objects.requireNonNull(minecraftserver); // CraftBukkit - decompile error
@@ -497,7 +497,7 @@ index c9def2202d7c2a523858ec124df2beaf994d9888..3a7bcee2e4b1c4ef2ba303b0200ae846
              } else {
                  this.level.addParticle(ParticleTypes.EXPLOSION, this.x, this.y, this.z, 1.0D, 0.0D, 0.0D);
 diff --git a/src/main/java/net/minecraft/world/level/Level.java b/src/main/java/net/minecraft/world/level/Level.java
-index 9f0126aedb94f74d01dc47112496160cc4e1f02c..dc3f2b26e19619adf80827d26b95209ded973c2a 100644
+index cf8693d02de53f1e02d55936f889c5724889e3f5..a6c58a6f2a69c4783570c29d300dd996c01c014e 100644
 --- a/src/main/java/net/minecraft/world/level/Level.java
 +++ b/src/main/java/net/minecraft/world/level/Level.java
 @@ -172,7 +172,14 @@ public abstract class Level implements LevelAccessor, AutoCloseable {
