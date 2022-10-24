@@ -1,8 +1,8 @@
-name: Build (dev)
+name: Build (develop)
 on:
   push:
     branches:
-      - "dev"
+      - "develop"
 
 env:
   MC_VERSION: "1.19.2"
