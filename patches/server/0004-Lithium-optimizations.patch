@@ -1083,11 +1083,11 @@ index 6c27b22dd1d497687c0f4d3835e34149bcf952c1..445f21c3764d148de937f558e3f087ae
  
      public static Direction getNearest(double x, double y, double z) {
 diff --git a/src/main/java/net/minecraft/server/level/ServerLevel.java b/src/main/java/net/minecraft/server/level/ServerLevel.java
-index 571a1cbee376032b6b9f36c9fe3f9199a3ad3197..df014d5b1b2d3b1d0e7a0b9eedb3c19ee693b836 100644
+index d418144bc7471b2c00ad272652b035d79974ef75..7672e7b8f162dfc173f2c6b94a0e339751969a0c 100644
 --- a/src/main/java/net/minecraft/server/level/ServerLevel.java
 +++ b/src/main/java/net/minecraft/server/level/ServerLevel.java
-@@ -227,6 +227,13 @@ public class ServerLevel extends Level implements WorldGenLevel {
-         return new Throwable(entity + " Added to world at " + new java.util.Date());
+@@ -229,6 +229,13 @@ public class ServerLevel extends Level implements WorldGenLevel {
+         return thr;
      }
  
 +    // Mirai start

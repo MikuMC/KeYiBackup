@@ -278,7 +278,7 @@ index b759f82b265542f42821e35ead56a5c073625d36..f93cbf0812801bb503db26e623d988e4
  
                  @Override
 diff --git a/src/main/java/net/minecraft/network/Connection.java b/src/main/java/net/minecraft/network/Connection.java
-index e1563410e0711de5cf9363978125e637929392da..948e988cdcf3edb0ceb0bd397d0579a1784d9ae1 100644
+index 40fd77b18425f093ddc69d21856f4e9548f8f9ca..3ed75fe9f712c0e777b0ec9152705390a17f2bd0 100644
 --- a/src/main/java/net/minecraft/network/Connection.java
 +++ b/src/main/java/net/minecraft/network/Connection.java
 @@ -355,7 +355,11 @@ public class Connection extends SimpleChannelInboundHandler<Packet<?>> {
@@ -312,7 +312,7 @@ index e1563410e0711de5cf9363978125e637929392da..948e988cdcf3edb0ceb0bd397d0579a1
          ConnectionProtocol enumprotocol = ConnectionProtocol.getProtocolForPacket(packet);
          ConnectionProtocol enumprotocol1 = this.getCurrentProtocol();
 diff --git a/src/main/java/net/minecraft/server/MCUtil.java b/src/main/java/net/minecraft/server/MCUtil.java
-index 07b0b0993c01763b39d1c9a387447ec76b5de190..72e700a775403eec2d1a32859279401351b836b1 100644
+index 0d995a13114e718016518f41d7fcff3042674847..bd7c4f5056470dead6aece51777ebc0e5bbdd06b 100644
 --- a/src/main/java/net/minecraft/server/MCUtil.java
 +++ b/src/main/java/net/minecraft/server/MCUtil.java
 @@ -55,8 +55,8 @@ import java.util.function.Supplier;
@@ -327,10 +327,10 @@ index 07b0b0993c01763b39d1c9a387447ec76b5de190..72e700a775403eec2d1a328592794013
              .setNameFormat("Paper Async Task Handler Thread - %1$d")
              .setUncaughtExceptionHandler(new net.minecraft.DefaultUncaughtExceptionHandlerWithName(MinecraftServer.LOGGER))
 diff --git a/src/main/java/net/minecraft/server/Main.java b/src/main/java/net/minecraft/server/Main.java
-index 5962f7a2b185d7d54a0f9e341a4fdf6e6f1c1ec5..8c80520396bc7e34bac25354c1fcdb38b71000c7 100644
+index 88ef769abfa163f923258d1f83d47b28c491eaca..9ae43d359deee3172f8f059adc94dffee1ec303f 100644
 --- a/src/main/java/net/minecraft/server/Main.java
 +++ b/src/main/java/net/minecraft/server/Main.java
-@@ -318,7 +318,7 @@ public class Main {
+@@ -327,7 +327,7 @@ public class Main {
      // Paper start - fix and optimise world upgrading
      public static void convertWorldButItWorks(net.minecraft.resources.ResourceKey<net.minecraft.world.level.dimension.LevelStem> dimensionType, net.minecraft.world.level.storage.LevelStorageSource.LevelStorageAccess worldSession,
                                                DataFixer dataFixer, Optional<net.minecraft.resources.ResourceKey<com.mojang.serialization.Codec<? extends net.minecraft.world.level.chunk.ChunkGenerator>>> generatorKey, boolean removeCaches) {
@@ -444,10 +444,10 @@ index 01ca7156d86243a80cd343a2a66be9ebedcc3b7c..852ec490e2a53803ca72a3ec0d994cbe
      private WorldGenSettings worldGenSettings;
  
 diff --git a/src/main/java/net/minecraft/server/level/ServerLevel.java b/src/main/java/net/minecraft/server/level/ServerLevel.java
-index df014d5b1b2d3b1d0e7a0b9eedb3c19ee693b836..2461aadffa36e1e193fa32ddb5955c9946ad1450 100644
+index 7672e7b8f162dfc173f2c6b94a0e339751969a0c..e2e04925016a7c1ddcc39adf235b31e67ed6be97 100644
 --- a/src/main/java/net/minecraft/server/level/ServerLevel.java
 +++ b/src/main/java/net/minecraft/server/level/ServerLevel.java
-@@ -533,7 +533,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
+@@ -535,7 +535,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
      public ServerLevel(MinecraftServer minecraftserver, Executor executor, LevelStorageSource.LevelStorageAccess convertable_conversionsession, PrimaryLevelData iworlddataserver, ResourceKey<Level> resourcekey, LevelStem worlddimension, ChunkProgressListener worldloadlistener, boolean flag, long i, List<CustomSpawner> list, boolean flag1, org.bukkit.World.Environment env, org.bukkit.generator.ChunkGenerator gen, org.bukkit.generator.BiomeProvider biomeProvider) {
          // Holder holder = worlddimension.typeHolder(); // CraftBukkit - decompile error
          // Objects.requireNonNull(minecraftserver); // CraftBukkit - decompile error
