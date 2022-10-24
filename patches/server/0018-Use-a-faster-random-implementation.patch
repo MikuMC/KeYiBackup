@@ -445,7 +445,7 @@ index a5d3aa309d3fdaab9e0fea2dfb91a080a3ac1193..384733b2b0bc7c5108ebdc725c0d1354
  
      private void fillPositionsWithIterateOutwards(LongList entry, int xRange, int yRange, int zRange) {
 diff --git a/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java b/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java
-index bdf67c916fe435f3bd04a61cce6db93c606515ce..f01dd420e2ff4f87b00682681a4f7dbf05955d24 100644
+index 620173eef4c2f30a97a4c2f8049ea01fcc60d0b2..1ef5f03a332e832817be132bbbf3ac1021f085d1 100644
 --- a/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java
 +++ b/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java
 @@ -53,6 +53,10 @@ import net.minecraft.world.level.material.Fluids;
@@ -459,7 +459,7 @@ index bdf67c916fe435f3bd04a61cce6db93c606515ce..f01dd420e2ff4f87b00682681a4f7dbf
  
  public class LevelChunk extends ChunkAccess {
  
-@@ -957,7 +961,7 @@ public class LevelChunk extends ChunkAccess {
+@@ -932,7 +936,7 @@ public class LevelChunk extends ChunkAccess {
              if (this.needsDecoration) {
                  //try (co.aikar.timings.Timing ignored = this.level.timings.chunkLoadPopulate.startTiming()) { // Paper // Purpur
                  this.needsDecoration = false;

@@ -1083,7 +1083,7 @@ index 6c27b22dd1d497687c0f4d3835e34149bcf952c1..445f21c3764d148de937f558e3f087ae
  
      public static Direction getNearest(double x, double y, double z) {
 diff --git a/src/main/java/net/minecraft/server/level/ServerLevel.java b/src/main/java/net/minecraft/server/level/ServerLevel.java
-index 92e7ba78e18efb8263475ecc076bc49e88b85e84..2a9219e0139670674319a7cf17ad664582b42715 100644
+index 571a1cbee376032b6b9f36c9fe3f9199a3ad3197..df014d5b1b2d3b1d0e7a0b9eedb3c19ee693b836 100644
 --- a/src/main/java/net/minecraft/server/level/ServerLevel.java
 +++ b/src/main/java/net/minecraft/server/level/ServerLevel.java
 @@ -227,6 +227,13 @@ public class ServerLevel extends Level implements WorldGenLevel {
@@ -1468,7 +1468,7 @@ index bef8f4d080fb6067f87b9df986ac33f7003c2a84..a727875f6db8d9950d1d9ada67dd3948
      public InteractionResult interact(Player player, InteractionHand hand) {
          return InteractionResult.PASS;
 diff --git a/src/main/java/net/minecraft/world/entity/LivingEntity.java b/src/main/java/net/minecraft/world/entity/LivingEntity.java
-index 9fe6d0700f8f4d4cc018bcb4f33fffaa5f51a1d9..9d824c56914292810091b358ff7d718add617f21 100644
+index 1fc877194950ee754e9ffdbe3ff9b80bb316560f..ba673b7e5ae1084caa6b23763c9a83aac60269bb 100644
 --- a/src/main/java/net/minecraft/world/entity/LivingEntity.java
 +++ b/src/main/java/net/minecraft/world/entity/LivingEntity.java
 @@ -577,11 +577,11 @@ public abstract class LivingEntity extends Entity {
@@ -1494,7 +1494,7 @@ index 9fe6d0700f8f4d4cc018bcb4f33fffaa5f51a1d9..9d824c56914292810091b358ff7d718a
  
      }
  
-@@ -2552,6 +2552,8 @@ public abstract class LivingEntity extends Entity {
+@@ -2550,6 +2550,8 @@ public abstract class LivingEntity extends Entity {
      }
  
      protected void updateSwingTime() {
@@ -1503,7 +1503,7 @@ index 9fe6d0700f8f4d4cc018bcb4f33fffaa5f51a1d9..9d824c56914292810091b358ff7d718a
          int i = this.getCurrentSwingDuration();
  
          if (this.swinging) {
-@@ -3531,6 +3533,8 @@ public abstract class LivingEntity extends Entity {
+@@ -3529,6 +3531,8 @@ public abstract class LivingEntity extends Entity {
      }
  
      private void updateFallFlying() {
