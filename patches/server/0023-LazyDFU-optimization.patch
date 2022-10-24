@@ -1,0 +1,37 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Aikar <aikar@aikar.co>
+Date: Mon, 24 Oct 2022 00:53:33 -0400
+Subject: [PATCH] LazyDFU optimization
+
+Original code by astei, licensed under MIT
+You can find the original code on https://github.com/astei/lazydfu
+reason of astei: Disables any possibility of enabling DFU "optimizations"
+
+diff --git a/src/main/java/net/minecraft/SharedConstants.java b/src/main/java/net/minecraft/SharedConstants.java
+index 584fd6b9816ce3834740920fe95cb47e85deb2f3..9503aa564785bedd35b2c7a769238dbc7c062eb4 100644
+--- a/src/main/java/net/minecraft/SharedConstants.java
++++ b/src/main/java/net/minecraft/SharedConstants.java
+@@ -195,20 +195,11 @@ public class SharedConstants {
+         }
+     }
+ 
++    // lazydfu start
+     public static void enableDataFixerOptimizations() {
+-        DataFixerOptimizationOption var10000;
+-        switch (DATAFIXER_OPTIMIZATION_OPTION) {
+-            case INITIALIZED_UNOPTIMIZED:
+-                throw new IllegalStateException("Tried to enable datafixer optimization after unoptimized initialization");
+-            case INITIALIZED_OPTIMIZED:
+-                var10000 = DataFixerOptimizationOption.INITIALIZED_OPTIMIZED;
+-                break;
+-            default:
+-                var10000 = DataFixerOptimizationOption.UNINITIALIZED_OPTIMIZED;
+-        }
+-
+-        DATAFIXER_OPTIMIZATION_OPTION = var10000;
++        // Turn this method into a no-op.
+     }
++    // lazydfu end
+ 
+     static {
+         ResourceLeakDetector.setLevel(NETTY_LEAK_DETECTION);
