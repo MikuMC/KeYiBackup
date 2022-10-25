@@ -1,0 +1,62 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: nostalgic853 <yuu8583@proton.me>
+Date: Tue, 25 Oct 2022 15:09:30 +0800
+Subject: [PATCH] Use cached pool for mob spawning executor
+
+
+diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
+index 705fe5e4a8b25fb061263ac60e491aeff83bd930..cff2a34ba0bbd2af20d60eb7934c7c62cd121b22 100644
+--- a/src/main/java/net/minecraft/server/MinecraftServer.java
++++ b/src/main/java/net/minecraft/server/MinecraftServer.java
+@@ -43,6 +43,7 @@ import java.util.Optional;
+ import java.util.Set;
+ import java.util.concurrent.CompletableFuture;
+ import java.util.concurrent.Executor;
++import java.util.concurrent.ExecutorService;
+ import java.util.concurrent.RejectedExecutionException;
+ import java.util.concurrent.atomic.AtomicReference;
+ import java.util.function.BooleanSupplier;
+@@ -303,7 +304,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+     public volatile boolean abnormalExit = false; // Paper
+     public boolean isIteratingOverLevels = false; // Paper
+ 
+-    public gg.pufferfish.pufferfish.util.AsyncExecutor mobSpawnExecutor = new gg.pufferfish.pufferfish.util.AsyncExecutor("MobSpawning", () -> true); // Pufferfish - optimize mob spawning
++    public ExecutorService mobSpawnExecutor; // Pufferfish - optimize mob spawning // KeYi - use cached pool
+ 
+     public static <S extends MinecraftServer> S spin(Function<Thread, S> serverFactory) {
+         AtomicReference<S> atomicreference = new AtomicReference();
+diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
+index d6c3db7234fa9b52e945cb004d8ae843aabf1302..dbefb06e013efadd056a60b60f4a0f1c1044ab97 100644
+--- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
++++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
+@@ -1,6 +1,7 @@
+ package net.minecraft.server.dedicated;
+ 
+ import com.google.common.collect.Lists;
++import com.google.common.util.concurrent.ThreadFactoryBuilder;
+ import com.mojang.authlib.GameProfile;
+ import com.mojang.datafixers.DataFixer;
+ import com.mojang.logging.LogUtils;
+@@ -17,6 +18,7 @@ import java.util.Collections;
+ import java.util.List;
+ import java.util.Locale;
+ import java.util.Optional;
++import java.util.concurrent.Executors;
+ import java.util.function.BooleanSupplier;
+ import javax.annotation.Nullable;
+ import net.minecraft.DefaultUncaughtExceptionHandler;
+@@ -393,7 +395,13 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+                 DedicatedServer.LOGGER.info("JMX monitoring enabled");
+             }
+ 
+-            if (gg.pufferfish.pufferfish.PufferfishConfig.enableAsyncMobSpawning) mobSpawnExecutor.start(); // Pufferfish
++            // KeYi start - use cached pool
++            if (gg.pufferfish.pufferfish.PufferfishConfig.enableAsyncMobSpawning) {
++                mobSpawnExecutor = Executors.newCachedThreadPool(new ThreadFactoryBuilder()
++                        .setNameFormat("KeYi Mob Spawning Thread - %s")
++                        .build());
++            }
++            // KeYi end
+             org.purpurmc.purpur.task.BossBarTask.startAll(); // Purpur
+             org.purpurmc.purpur.task.BeehiveTask.instance().register(); // Purpur
+             return true;
