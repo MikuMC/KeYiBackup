@@ -11,8 +11,6 @@
 
 # Features
 
-- Multithreaded entity tracker. (Petal)
-- Async path finding. (Petal)
 - Lithium optimizations. (JettPack)
 - C2ME optimizations. (Mirai)
 - **(WIP)** Faster hopper algorithm.

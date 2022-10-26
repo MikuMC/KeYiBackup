@@ -10,8 +10,6 @@
 
 # 功能
 
-- 多线程实体 AI 跟踪 (Petal)
-- 异步寻路 (Petal)
 - 部分移植自 Lithium 的优化 (JettPack)
 - 部分移植自 C2ME 的优化 (Mirai)
 - **(WIP)** 更快的漏斗算法
