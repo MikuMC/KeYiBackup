@@ -5,21 +5,22 @@ Subject: [PATCH] Add an option for tripwire duping
 
 
 diff --git a/src/main/java/cc/keyimc/keyi/KeyiConfig.java b/src/main/java/cc/keyimc/keyi/KeyiConfig.java
-index 5582c15a37fbbf74d2039ba15d67684f5294a46d..8884a2471b4b7c5cabf1c0c767710ba69c7ae4ec 100644
+index 98705c4206906404fed31c87fb03737fe3771b0a..c93bb951fd456af9e8f030b6f5c7989925c3556f 100644
 --- a/src/main/java/cc/keyimc/keyi/KeyiConfig.java
 +++ b/src/main/java/cc/keyimc/keyi/KeyiConfig.java
-@@ -142,4 +142,10 @@ public final class KeyiConfig {
-         enableOfflineModeWarning = getBoolean("misc.enable-offline-mode-warning", enableOfflineModeWarning);
+@@ -143,6 +143,12 @@ public final class KeyiConfig {
          enableProxyUnsafeWarning = getBoolean("misc.enable-proxy-unsafe-warning", enableProxyUnsafeWarning);
      }
-+
+ 
 +    public static boolean fixTripwireDuping = true;
 +
 +    private static void fixes() {
 +        fixTripwireDuping = getBoolean("fixes.fix-tripwire-duping", fixTripwireDuping);
 +    }
- }
-\ No newline at end of file
++
+     // Suki start - only refresh lootables for players
+ 
+     public static boolean onlyRefreshForPlayers = false;
 diff --git a/src/main/java/net/minecraft/world/level/block/TripWireHookBlock.java b/src/main/java/net/minecraft/world/level/block/TripWireHookBlock.java
 index 004dce26ff073f1de52a84cd425c4f60fdab5e50..b37a5d643dc07eaa0808b972f43281f2e24d3394 100644
 --- a/src/main/java/net/minecraft/world/level/block/TripWireHookBlock.java

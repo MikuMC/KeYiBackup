@@ -10,14 +10,13 @@ Let users decide if we should warn while running in offline mode
 Let users decide if we should warn while running in proxy mode
 
 diff --git a/src/main/java/cc/keyimc/keyi/KeyiConfig.java b/src/main/java/cc/keyimc/keyi/KeyiConfig.java
-index bc9403d002ef24e71be67a962d099f5d73db9540..5582c15a37fbbf74d2039ba15d67684f5294a46d 100644
+index 8b9a2f06b0a61cfdd493eeddde512f0abd17f49e..98705c4206906404fed31c87fb03737fe3771b0a 100644
 --- a/src/main/java/cc/keyimc/keyi/KeyiConfig.java
 +++ b/src/main/java/cc/keyimc/keyi/KeyiConfig.java
-@@ -132,4 +132,14 @@ public final class KeyiConfig {
-     public static void reload() {
+@@ -133,6 +133,16 @@ public final class KeyiConfig {
          KeyiConfig.init((File) MinecraftServer.getServer().options.valueOf("keyi-settings"));
      }
-+
+ 
 +    public static boolean enableRootUserWarning = true;
 +    public static boolean enableOfflineModeWarning = true;
 +    public static boolean enableProxyUnsafeWarning = true;
@@ -27,10 +26,12 @@ index bc9403d002ef24e71be67a962d099f5d73db9540..5582c15a37fbbf74d2039ba15d67684f
 +        enableOfflineModeWarning = getBoolean("misc.enable-offline-mode-warning", enableOfflineModeWarning);
 +        enableProxyUnsafeWarning = getBoolean("misc.enable-proxy-unsafe-warning", enableProxyUnsafeWarning);
 +    }
- }
-\ No newline at end of file
++
+     // Suki start - only refresh lootables for players
+ 
+     public static boolean onlyRefreshForPlayers = false;
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-index 9227cff62d675703785ad2eaebf6dcbb5adfbaa7..3e7dd41555263e8361db08d1380c767fe0ba8886 100644
+index bb4e33f0cbc33ffe2fed783fab411564338bd228..7f3d258bc52ba1b1dfc3dd630ef061365198d61f 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 @@ -185,7 +185,7 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
