@@ -5,7 +5,7 @@ Subject: [PATCH] Use cached pool for mob spawning executor
 
 
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 705fe5e4a8b25fb061263ac60e491aeff83bd930..cff2a34ba0bbd2af20d60eb7934c7c62cd121b22 100644
+index 04a8cc1ec44b474e1048ccb06b4a7c11a61ec29b..66843d7ca82c4be7f45b7b830f0d45d925a3d504 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -43,6 +43,7 @@ import java.util.Optional;
@@ -16,7 +16,7 @@ index 705fe5e4a8b25fb061263ac60e491aeff83bd930..cff2a34ba0bbd2af20d60eb7934c7c62
  import java.util.concurrent.RejectedExecutionException;
  import java.util.concurrent.atomic.AtomicReference;
  import java.util.function.BooleanSupplier;
-@@ -303,7 +304,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+@@ -302,7 +303,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
      public volatile boolean abnormalExit = false; // Paper
      public boolean isIteratingOverLevels = false; // Paper
  
@@ -26,7 +26,7 @@ index 705fe5e4a8b25fb061263ac60e491aeff83bd930..cff2a34ba0bbd2af20d60eb7934c7c62
      public static <S extends MinecraftServer> S spin(Function<Thread, S> serverFactory) {
          AtomicReference<S> atomicreference = new AtomicReference();
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-index d6c3db7234fa9b52e945cb004d8ae843aabf1302..dbefb06e013efadd056a60b60f4a0f1c1044ab97 100644
+index 9a4c782b8be6a837a5c1a07e930b6bb8069b1c54..642c56b17d98b5f527dfa271ee45c5e831c13bf6 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 @@ -1,6 +1,7 @@
@@ -45,7 +45,7 @@ index d6c3db7234fa9b52e945cb004d8ae843aabf1302..dbefb06e013efadd056a60b60f4a0f1c
  import java.util.function.BooleanSupplier;
  import javax.annotation.Nullable;
  import net.minecraft.DefaultUncaughtExceptionHandler;
-@@ -393,7 +395,13 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+@@ -389,7 +391,13 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
                  DedicatedServer.LOGGER.info("JMX monitoring enabled");
              }
  
