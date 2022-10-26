@@ -2276,7 +2276,7 @@ index 2182afd1b95acf14c55bddfeec17dae0a63e1f00..461ac9a464c4a66e302798032c6019bb
          this.shape = voxels;
      }
 diff --git a/src/main/java/net/minecraft/world/ticks/LevelChunkTicks.java b/src/main/java/net/minecraft/world/ticks/LevelChunkTicks.java
-index ac807277a6b26d140ea9873d17c7aa4fb5fe37b2..b46e4be9202eb6002f1e95f12bb875de004e0582 100644
+index ac807277a6b26d140ea9873d17c7aa4fb5fe37b2..c48f16ce223bff3c27abf3ea8979b8f0921c1505 100644
 --- a/src/main/java/net/minecraft/world/ticks/LevelChunkTicks.java
 +++ b/src/main/java/net/minecraft/world/ticks/LevelChunkTicks.java
 @@ -16,14 +16,37 @@ import javax.annotation.Nullable;
@@ -2330,8 +2330,8 @@ index ac807277a6b26d140ea9873d17c7aa4fb5fe37b2..b46e4be9202eb6002f1e95f12bb875de
 +                this.allpendingTicks.add(tickToInt(orderedTick.pos(), orderedTick.type()));
 +            }
 +        }
-+        this.ticksPerPosition = null;
-+        this.tickQueue = null;
++        // this.ticksPerPosition = null; // KeYi - dont null
++        // this.tickQueue = null; // KeYi - dont null
 +        // Mirai end
 +    }
 +
