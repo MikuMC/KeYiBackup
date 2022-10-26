@@ -41,7 +41,7 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
           title: "[${{ env.ref }}] #${{ env.workflow }}"
-          automatic_release_tag: "main-latest"
+          automatic_release_tag: "develop-latest"
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           files: "build/libs/keyi-${{ env.ref }}-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
           prerelease: true
