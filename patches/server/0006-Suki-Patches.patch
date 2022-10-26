@@ -227,8 +227,23 @@ index e731de3ac158c5a4cff236c6f5001674cd488a77..06a6cecfa01c676285ea894c3ed77d0e
 +    }
 +    // Suki end - Suki configuration
  }
+diff --git a/src/main/java/io/papermc/paper/util/MCUtil.java b/src/main/java/io/papermc/paper/util/MCUtil.java
+index c8f7aa9e0794713724e1053581c220aa95f1bc90..f24193a13563bbfbe0f0677ec8f645b122937996 100644
+--- a/src/main/java/io/papermc/paper/util/MCUtil.java
++++ b/src/main/java/io/papermc/paper/util/MCUtil.java
+@@ -56,8 +56,8 @@ import java.util.function.Supplier;
+ 
+ public final class MCUtil {
+     public static final ThreadPoolExecutor asyncExecutor = new ThreadPoolExecutor(
+-        0, 2, 60L, TimeUnit.SECONDS,
+-        new LinkedBlockingQueue<>(),
++        Integer.getInteger("suki.threads.asyncexecutor", 4), Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, // JettPack // Suki - multithreading environment variables
++		new LinkedBlockingQueue<>(),
+         new ThreadFactoryBuilder()
+             .setNameFormat("Paper Async Task Handler Thread - %1$d")
+             .setUncaughtExceptionHandler(new net.minecraft.DefaultUncaughtExceptionHandlerWithName(MinecraftServer.LOGGER))
 diff --git a/src/main/java/net/minecraft/Util.java b/src/main/java/net/minecraft/Util.java
-index b759f82b265542f42821e35ead56a5c073625d36..f93cbf0812801bb503db26e623d988e4eeb8b126 100644
+index b2860114d52c52360e1e559d0c2c5ee4789dee97..8c09bdc0bd0af7ab9c5b3cad4067e1e0067c5502 100644
 --- a/src/main/java/net/minecraft/Util.java
 +++ b/src/main/java/net/minecraft/Util.java
 @@ -27,7 +27,6 @@ import java.net.URL;
@@ -268,8 +283,8 @@ index b759f82b265542f42821e35ead56a5c073625d36..f93cbf0812801bb503db26e623d988e4
          ExecutorService executorService;
  
          if (i <= 0) {
-@@ -173,7 +183,7 @@ public class Util {
-         } else {
+@@ -174,7 +184,7 @@ public class Util {
+ 
              //executorService = new java.util.concurrent.ThreadPoolExecutor(i, i,0L, TimeUnit.MILLISECONDS, new java.util.concurrent.LinkedBlockingQueue<Runnable>(), target -> new net.minecraft.server.ServerWorkerThread(target, s, priorityModifier)); // JettPack
              // JettPack start
 -            executorService = Integer.getInteger("Paper.WorkerThreadCount", i) <= 0 ? MoreExecutors.newDirectExecutorService() : new AbstractExecutorService(){
@@ -278,7 +293,7 @@ index b759f82b265542f42821e35ead56a5c073625d36..f93cbf0812801bb503db26e623d988e4
  
                  @Override
 diff --git a/src/main/java/net/minecraft/network/Connection.java b/src/main/java/net/minecraft/network/Connection.java
-index 40fd77b18425f093ddc69d21856f4e9548f8f9ca..3ed75fe9f712c0e777b0ec9152705390a17f2bd0 100644
+index 141ea294d12411d58771ea1ad58383e84b6ba048..20763daf8921f78f8c017d3dbcafbd2c8527abcf 100644
 --- a/src/main/java/net/minecraft/network/Connection.java
 +++ b/src/main/java/net/minecraft/network/Connection.java
 @@ -355,7 +355,11 @@ public class Connection extends SimpleChannelInboundHandler<Packet<?>> {
@@ -311,21 +326,6 @@ index 40fd77b18425f093ddc69d21856f4e9548f8f9ca..3ed75fe9f712c0e777b0ec9152705390
          // Paper end - add flush parameter
          ConnectionProtocol enumprotocol = ConnectionProtocol.getProtocolForPacket(packet);
          ConnectionProtocol enumprotocol1 = this.getCurrentProtocol();
-diff --git a/src/main/java/net/minecraft/server/MCUtil.java b/src/main/java/net/minecraft/server/MCUtil.java
-index 0d995a13114e718016518f41d7fcff3042674847..bd7c4f5056470dead6aece51777ebc0e5bbdd06b 100644
---- a/src/main/java/net/minecraft/server/MCUtil.java
-+++ b/src/main/java/net/minecraft/server/MCUtil.java
-@@ -55,8 +55,8 @@ import java.util.function.Supplier;
- 
- public final class MCUtil {
-     public static final ThreadPoolExecutor asyncExecutor = new ThreadPoolExecutor(
--        0, 2, 60L, TimeUnit.SECONDS,
--        new LinkedBlockingQueue<>(),
-+        Integer.getInteger("suki.threads.asyncexecutor", 4), Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, // JettPack // Suki - multithreading environment variables
-+		new LinkedBlockingQueue<>(),
-         new ThreadFactoryBuilder()
-             .setNameFormat("Paper Async Task Handler Thread - %1$d")
-             .setUncaughtExceptionHandler(new net.minecraft.DefaultUncaughtExceptionHandlerWithName(MinecraftServer.LOGGER))
 diff --git a/src/main/java/net/minecraft/server/Main.java b/src/main/java/net/minecraft/server/Main.java
 index 88ef769abfa163f923258d1f83d47b28c491eaca..9ae43d359deee3172f8f059adc94dffee1ec303f 100644
 --- a/src/main/java/net/minecraft/server/Main.java
@@ -340,7 +340,7 @@ index 88ef769abfa163f923258d1f83d47b28c491eaca..9ae43d359deee3172f8f059adc94dffe
          worldUpgrader.convert();
      }
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index a444c8c57a2ab16eba45b0379841a69ff60a5586..ede16b015b9dde07a7346e0bffde53082145798b 100644
+index 795c631bb5edc696a4e52703b1819fcddfb800e2..a85170f6ff613b002d9471f18385d6fea7172e43 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -294,6 +294,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
@@ -416,7 +416,7 @@ index ef6ff78af2ae747e939895b82ee9d11c75012dcd..05d011ff1053fafd9b1d440911fbe123
      }
  }
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-index ca0ddafe66dd5d02b1e96b1fc1c574490b68e6d4..9227cff62d675703785ad2eaebf6dcbb5adfbaa7 100644
+index a9c4f1192f53fea55b2f5edc8a91b6911489e2d3..bb4e33f0cbc33ffe2fed783fab411564338bd228 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 @@ -213,6 +213,10 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
@@ -444,7 +444,7 @@ index 01ca7156d86243a80cd343a2a66be9ebedcc3b7c..852ec490e2a53803ca72a3ec0d994cbe
      private WorldGenSettings worldGenSettings;
  
 diff --git a/src/main/java/net/minecraft/server/level/ServerLevel.java b/src/main/java/net/minecraft/server/level/ServerLevel.java
-index 7672e7b8f162dfc173f2c6b94a0e339751969a0c..e2e04925016a7c1ddcc39adf235b31e67ed6be97 100644
+index 00fe84ae4fee41b365223f836c82e1688fe322ee..475022d09a149baf7ff37203d7e69d8c0cf17647 100644
 --- a/src/main/java/net/minecraft/server/level/ServerLevel.java
 +++ b/src/main/java/net/minecraft/server/level/ServerLevel.java
 @@ -535,7 +535,7 @@ public class ServerLevel extends Level implements WorldGenLevel {
@@ -497,7 +497,7 @@ index c9def2202d7c2a523858ec124df2beaf994d9888..3a7bcee2e4b1c4ef2ba303b0200ae846
              } else {
                  this.level.addParticle(ParticleTypes.EXPLOSION, this.x, this.y, this.z, 1.0D, 0.0D, 0.0D);
 diff --git a/src/main/java/net/minecraft/world/level/Level.java b/src/main/java/net/minecraft/world/level/Level.java
-index 9f0126aedb94f74d01dc47112496160cc4e1f02c..dc3f2b26e19619adf80827d26b95209ded973c2a 100644
+index aa27ab72d30f917ea41045db16b6f59f1442ea77..d882d52ff7aa2c3a33438ecb078c810160ef47d1 100644
 --- a/src/main/java/net/minecraft/world/level/Level.java
 +++ b/src/main/java/net/minecraft/world/level/Level.java
 @@ -172,7 +172,14 @@ public abstract class Level implements LevelAccessor, AutoCloseable {
@@ -577,7 +577,7 @@ index 34e351e04ac57e47e3cea671c61cc01d17983b77..f583ae81fb60027c47aaecdb6451462c
  
          UpgradeData chunkconverter = nbt.contains("UpgradeData", 10) ? new UpgradeData(nbt.getCompound("UpgradeData"), world) : UpgradeData.EMPTY;
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 4f029b96bf8deee597dbb56974e4519a1422f96d..9e47bbefdb373a75a9903b19c23e9191b9c84846 100644
+index 3a67aaa39daf1fb86938f53e129aadfb686583b0..fcef3719c1ced178e47681b7721ed387a18d59f5 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -242,6 +242,7 @@ import org.jetbrains.annotations.NotNull;

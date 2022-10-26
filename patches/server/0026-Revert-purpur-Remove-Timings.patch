@@ -6,10 +6,10 @@ Subject: [PATCH] Revert purpur "Remove Timings"
 This reverts commit 0fb6171d
 
 diff --git a/src/main/java/io/papermc/paper/chunk/system/scheduling/ChunkHolderManager.java b/src/main/java/io/papermc/paper/chunk/system/scheduling/ChunkHolderManager.java
-index 54ec7955ba394e82663b08972dd89f69a23593ac..8dc1d2d15d571d1603a41dee13681a87841f5e23 100644
+index 830d863cd9665d58875bfa5ca2bcd22f89ab2d49..e5d9c6f2cbe11c2ded6d8ad111fa6a8b2086dfba 100644
 --- a/src/main/java/io/papermc/paper/chunk/system/scheduling/ChunkHolderManager.java
 +++ b/src/main/java/io/papermc/paper/chunk/system/scheduling/ChunkHolderManager.java
-@@ -901,9 +901,9 @@ public final class ChunkHolderManager {
+@@ -915,9 +915,9 @@ public final class ChunkHolderManager {
      }
  
      public boolean processTicketUpdates() {
@@ -22,10 +22,10 @@ index 54ec7955ba394e82663b08972dd89f69a23593ac..8dc1d2d15d571d1603a41dee13681a87
  
      private static final ThreadLocal<List<ChunkProgressionTask>> CURRENT_TICKET_UPDATE_SCHEDULING = new ThreadLocal<>();
 diff --git a/src/main/java/io/papermc/paper/chunk/system/scheduling/NewChunkHolder.java b/src/main/java/io/papermc/paper/chunk/system/scheduling/NewChunkHolder.java
-index cfc355829df3e5b51c2ff524bb3730360fee15a2..4ce6df7082d4f7ed3651e3d57e379f95dd05715e 100644
+index e42eb93fd9f6f51ff5bb4b14a2304d4ffcdd8441..8013dd333e27aa5fd0beb431fa32491eec9f5246 100644
 --- a/src/main/java/io/papermc/paper/chunk/system/scheduling/NewChunkHolder.java
 +++ b/src/main/java/io/papermc/paper/chunk/system/scheduling/NewChunkHolder.java
-@@ -1748,7 +1748,7 @@ public final class NewChunkHolder {
+@@ -1750,7 +1750,7 @@ public final class NewChunkHolder {
          boolean canSavePOI = !(chunk instanceof LevelChunk levelChunk && levelChunk.mustNotSave) && (poi != null && poi.isDirty());
          boolean canSaveEntities = entities != null;
  
@@ -34,14 +34,14 @@ index cfc355829df3e5b51c2ff524bb3730360fee15a2..4ce6df7082d4f7ed3651e3d57e379f95
              if (canSaveChunk) {
                  canSaveChunk = this.saveChunk(chunk, unloading);
              }
-@@ -1762,7 +1762,7 @@ public final class NewChunkHolder {
+@@ -1764,7 +1764,7 @@ public final class NewChunkHolder {
                      this.lastEntityUnload = null;
                  }
              }
 -        //} // Purpur
 +        }
  
-         return executedUnloadTask | canSaveChunk | canSaveEntities | canSavePOI;
+         return executedUnloadTask | canSaveChunk | canSaveEntities | canSavePOI ? new SaveStat(executedUnloadTask || canSaveChunk, canSaveEntities, canSavePOI): null;
      }
 diff --git a/src/main/java/io/papermc/paper/configuration/GlobalConfiguration.java b/src/main/java/io/papermc/paper/configuration/GlobalConfiguration.java
 index 04ca6d27a13706fbddc708df0fcca42b4098bcba..d03551e81e3ef37935cb1d963aba3df316f48ef5 100644
@@ -89,7 +89,7 @@ index e8efbbeece7e866c6c4d7489677d2d9e15fea4d0..8bc0cb9ad5bb4e76d962ff54305e2c08
                      PacketUtils.LOGGER.debug("Ignoring packet due to disconnection: {}", packet);
                  }
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index ede16b015b9dde07a7346e0bffde53082145798b..705fe5e4a8b25fb061263ac60e491aeff83bd930 100644
+index a85170f6ff613b002d9471f18385d6fea7172e43..96748e184d953cb5838c1a90eb040acb90a4603f 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -331,13 +331,13 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
@@ -488,7 +488,7 @@ index 2986f110348b376bcdc64fa39b68885551663d4d..d1fa6b1edf733e15dfe9ecbf7ed63923
                  i = this.context.runTopCommand(function, source);
              } finally {
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-index 3e7dd41555263e8361db08d1380c767fe0ba8886..d6c3db7234fa9b52e945cb004d8ae843aabf1302 100644
+index 7f3d258bc52ba1b1dfc3dd630ef061365198d61f..62dcadb5bbbfbaf87c56cecb69f0dbcdc6726f9e 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 @@ -542,7 +542,7 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
@@ -510,7 +510,7 @@ index 3e7dd41555263e8361db08d1380c767fe0ba8886..d6c3db7234fa9b52e945cb004d8ae843
  
      @Override
 diff --git a/src/main/java/net/minecraft/server/level/ChunkMap.java b/src/main/java/net/minecraft/server/level/ChunkMap.java
-index 5258688cf1c980b95308b6d105dbf104b0276932..9976630fad886392057f642e84f919f0b95cc040 100644
+index 2182ee049defee88067aa61cee42d3a0122061b7..8d19dcf7a91d1e9c17d03e6e339885d99647ec92 100644
 --- a/src/main/java/net/minecraft/server/level/ChunkMap.java
 +++ b/src/main/java/net/minecraft/server/level/ChunkMap.java
 @@ -606,20 +606,20 @@ public class ChunkMap extends ChunkStorage implements ChunkHolder.PlayerProvider
@@ -602,7 +602,7 @@ index 5258688cf1c980b95308b6d105dbf104b0276932..9976630fad886392057f642e84f919f0
  
      }
 diff --git a/src/main/java/net/minecraft/server/level/ServerChunkCache.java b/src/main/java/net/minecraft/server/level/ServerChunkCache.java
-index cd5533c3c53215c9cc4be0b9097d76efbf5bd0c1..7266e6703d5cd0fea90ec88c74a7d4567f2420ae 100644
+index 9d13ef8c597b9ca11280ad1d3249d13bbab4ac6f..0b75caca3f77980505d0689601d920fb50f7ac4d 100644
 --- a/src/main/java/net/minecraft/server/level/ServerChunkCache.java
 +++ b/src/main/java/net/minecraft/server/level/ServerChunkCache.java
 @@ -430,16 +430,16 @@ public class ServerChunkCache extends ChunkSource {
@@ -797,7 +797,7 @@ index cd5533c3c53215c9cc4be0b9097d76efbf5bd0c1..7266e6703d5cd0fea90ec88c74a7d456
          }
  
 diff --git a/src/main/java/net/minecraft/server/level/ServerLevel.java b/src/main/java/net/minecraft/server/level/ServerLevel.java
-index e2e04925016a7c1ddcc39adf235b31e67ed6be97..26316eae266a0e19b3cacc39ed1c9263f1cd58ea 100644
+index 475022d09a149baf7ff37203d7e69d8c0cf17647..85dd3f137c49f91fd073c873636d4b02dbf5f4fe 100644
 --- a/src/main/java/net/minecraft/server/level/ServerLevel.java
 +++ b/src/main/java/net/minecraft/server/level/ServerLevel.java
 @@ -229,13 +229,6 @@ public class ServerLevel extends Level implements WorldGenLevel {
@@ -1151,13 +1151,13 @@ index 66c632f9a824e705420b9bb86de294f0e7305c50..4c5d7f00b68e4ec103a5841beaccfbdb
      }
      // CraftBukkit end
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index 393281223cd7b638d55b22ded20413709c23135a..9985aa1d4f7b4424bc71abdb7f16548be5ada0b6 100644
+index cd62c541141964406f2eb2cc835491ff93e88370..d2f12947db4106c3a5608a2d8be347b1ccc82c4b 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
 @@ -1287,7 +1287,7 @@ public abstract class PlayerList {
  
      public void saveAll(int interval) {
-         net.minecraft.server.MCUtil.ensureMain("Save Players" , () -> { // Paper - Ensure main
+         io.papermc.paper.util.MCUtil.ensureMain("Save Players" , () -> { // Paper - Ensure main
 -        //MinecraftTimings.savePlayers.startTiming(); // Paper // Purpur
 +        MinecraftTimings.savePlayers.startTiming(); // Paper
          int numSaved = 0;
@@ -1222,7 +1222,7 @@ index 7094701d213c73ba47ace806962244c10fdf4dda..fcdb9bde8e1605e30dde3e580491522d
  
      }
 diff --git a/src/main/java/net/minecraft/world/level/Level.java b/src/main/java/net/minecraft/world/level/Level.java
-index dc3f2b26e19619adf80827d26b95209ded973c2a..9b082716ebfe84e9a2dd5265b2ede86f42008cc2 100644
+index d882d52ff7aa2c3a33438ecb078c810160ef47d1..440b738b94112d4bdf5f113d567bb8020844cbe0 100644
 --- a/src/main/java/net/minecraft/world/level/Level.java
 +++ b/src/main/java/net/minecraft/world/level/Level.java
 @@ -117,9 +117,9 @@ public abstract class Level implements LevelAccessor, AutoCloseable {
@@ -1314,7 +1314,7 @@ index dc3f2b26e19619adf80827d26b95209ded973c2a..9b082716ebfe84e9a2dd5265b2ede86f
      }
  
 diff --git a/src/main/java/net/minecraft/world/level/NaturalSpawner.java b/src/main/java/net/minecraft/world/level/NaturalSpawner.java
-index bca69d595ef0f18a5910cbd6f7e6f742830a0800..386ed2c102aaa3ec68e828e20fff6bfe0d8f7877 100644
+index 6b8356e592bfca69cf785457284c99e47e360bd6..eceae1230e672d95491405f3f7c550c90ea9b138 100644
 --- a/src/main/java/net/minecraft/world/level/NaturalSpawner.java
 +++ b/src/main/java/net/minecraft/world/level/NaturalSpawner.java
 @@ -131,8 +131,8 @@ public final class NaturalSpawner {
@@ -1349,7 +1349,7 @@ index bca69d595ef0f18a5910cbd6f7e6f742830a0800..386ed2c102aaa3ec68e828e20fff6bfe
                              if (entityhuman != null) {
                                  double d2 = entityhuman.distanceToSqr(d0, (double) i, d1);
 diff --git a/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java b/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java
-index d3d2b554f0313b73442f25cc2bd6ab21fa34e2bf..b89dad36bf09fdab340efc83d09992b707cd321a 100644
+index ebb4f75580ae8e2a673313ea11139f987624454f..d9638971ac4d8dfaf4351cebb5ff6ea16327091e 100644
 --- a/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java
 +++ b/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java
 @@ -53,10 +53,6 @@ import net.minecraft.world.level.material.Fluids;
@@ -1384,7 +1384,7 @@ index d3d2b554f0313b73442f25cc2bd6ab21fa34e2bf..b89dad36bf09fdab340efc83d09992b7
              }
          }
      }
-@@ -1296,10 +1292,10 @@ public class LevelChunk extends ChunkAccess {
+@@ -1313,10 +1309,10 @@ public class LevelChunk extends ChunkAccess {
  
                  if (LevelChunk.this.isTicking(blockposition)) {
                      try {
@@ -1398,7 +1398,7 @@ index d3d2b554f0313b73442f25cc2bd6ab21fa34e2bf..b89dad36bf09fdab340efc83d09992b7
                          BlockState iblockdata = LevelChunk.this.getBlockState(blockposition);
  
                          if (this.blockEntity.getType().isValid(iblockdata)) {
-@@ -1310,7 +1306,7 @@ public class LevelChunk extends ChunkAccess {
+@@ -1327,7 +1323,7 @@ public class LevelChunk extends ChunkAccess {
                              LevelChunk.LOGGER.warn("Block entity {} @ {} state {} invalid for ticking:", new Object[]{LogUtils.defer(this::getType), LogUtils.defer(this::getPos), iblockdata});
                          }
  
@@ -1407,7 +1407,7 @@ index d3d2b554f0313b73442f25cc2bd6ab21fa34e2bf..b89dad36bf09fdab340efc83d09992b7
                      } catch (Throwable throwable) {
                          if (throwable instanceof ThreadDeath) throw throwable; // Paper
                          // Paper start - Prevent tile entity and entity crashes
-@@ -1321,7 +1317,7 @@ public class LevelChunk extends ChunkAccess {
+@@ -1338,7 +1334,7 @@ public class LevelChunk extends ChunkAccess {
                          // Paper end
                          // Spigot start
                      } finally {

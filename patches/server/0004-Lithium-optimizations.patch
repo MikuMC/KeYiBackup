@@ -1083,7 +1083,7 @@ index 6c27b22dd1d497687c0f4d3835e34149bcf952c1..445f21c3764d148de937f558e3f087ae
  
      public static Direction getNearest(double x, double y, double z) {
 diff --git a/src/main/java/net/minecraft/server/level/ServerLevel.java b/src/main/java/net/minecraft/server/level/ServerLevel.java
-index d418144bc7471b2c00ad272652b035d79974ef75..7672e7b8f162dfc173f2c6b94a0e339751969a0c 100644
+index c888e654ab9449bfdc7dfe16078eb0786ae6c15e..00fe84ae4fee41b365223f836c82e1688fe322ee 100644
 --- a/src/main/java/net/minecraft/server/level/ServerLevel.java
 +++ b/src/main/java/net/minecraft/server/level/ServerLevel.java
 @@ -229,6 +229,13 @@ public class ServerLevel extends Level implements WorldGenLevel {
@@ -1378,10 +1378,10 @@ index 5d8e9bdf5538b19681f21949368d862fab8a89ad..2224245a985dfe78565dfdb42840d3ed
 +    @Override public <T> void compact(Palette<T> srcPalette, Palette<T> dstPalette, short[] out) {} // JettPack
  }
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index bef8f4d080fb6067f87b9df986ac33f7003c2a84..a727875f6db8d9950d1d9ada67dd39480f3b0da9 100644
+index 967647c7dc0a4c2d762e7133fe969106f7d8ecba..dbaece0cbf521aada6bda2a2266edf0e97f3055f 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -2578,39 +2578,64 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+@@ -2589,39 +2589,64 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
          return !this.isRemoved();
      }
  
@@ -1468,10 +1468,10 @@ index bef8f4d080fb6067f87b9df986ac33f7003c2a84..a727875f6db8d9950d1d9ada67dd3948
      public InteractionResult interact(Player player, InteractionHand hand) {
          return InteractionResult.PASS;
 diff --git a/src/main/java/net/minecraft/world/entity/LivingEntity.java b/src/main/java/net/minecraft/world/entity/LivingEntity.java
-index 1fc877194950ee754e9ffdbe3ff9b80bb316560f..ba673b7e5ae1084caa6b23763c9a83aac60269bb 100644
+index 1ec9a48f2f44f5bd647e0661423ae90970aee262..219c7dcbe6bee5054aff0640a80d620eded812c0 100644
 --- a/src/main/java/net/minecraft/world/entity/LivingEntity.java
 +++ b/src/main/java/net/minecraft/world/entity/LivingEntity.java
-@@ -577,11 +577,11 @@ public abstract class LivingEntity extends Entity {
+@@ -576,11 +576,11 @@ public abstract class LivingEntity extends Entity {
      }
  
      protected void tryAddFrost() {
@@ -1485,7 +1485,7 @@ index 1fc877194950ee754e9ffdbe3ff9b80bb316560f..ba673b7e5ae1084caa6b23763c9a83aa
  
                  if (attributemodifiable == null) {
                      return;
-@@ -591,7 +591,7 @@ public abstract class LivingEntity extends Entity {
+@@ -590,7 +590,7 @@ public abstract class LivingEntity extends Entity {
  
                  attributemodifiable.addTransientModifier(new AttributeModifier(LivingEntity.SPEED_MODIFIER_POWDER_SNOW_UUID, "Powder snow slow", (double) f, AttributeModifier.Operation.ADDITION));
              }
@@ -1494,7 +1494,7 @@ index 1fc877194950ee754e9ffdbe3ff9b80bb316560f..ba673b7e5ae1084caa6b23763c9a83aa
  
      }
  
-@@ -2550,6 +2550,8 @@ public abstract class LivingEntity extends Entity {
+@@ -2549,6 +2549,8 @@ public abstract class LivingEntity extends Entity {
      }
  
      protected void updateSwingTime() {
@@ -1503,7 +1503,7 @@ index 1fc877194950ee754e9ffdbe3ff9b80bb316560f..ba673b7e5ae1084caa6b23763c9a83aa
          int i = this.getCurrentSwingDuration();
  
          if (this.swinging) {
-@@ -3529,6 +3531,8 @@ public abstract class LivingEntity extends Entity {
+@@ -3528,6 +3530,8 @@ public abstract class LivingEntity extends Entity {
      }
  
      private void updateFallFlying() {
@@ -1662,7 +1662,7 @@ index 17e869074b8cf29a8c3280499a27e95179896750..97a5aec7da267b8b9f6d191c871316cc
          // Pufferfish start
          int arraySize = rules.keySet().stream().mapToInt(key -> key.gameRuleIndex).max().orElse(-1) + 1;
 diff --git a/src/main/java/net/minecraft/world/level/Level.java b/src/main/java/net/minecraft/world/level/Level.java
-index cf8693d02de53f1e02d55936f889c5724889e3f5..9f0126aedb94f74d01dc47112496160cc4e1f02c 100644
+index 0bb14272d024af90e7aef40f2f694e184af607d3..aa27ab72d30f917ea41045db16b6f59f1442ea77 100644
 --- a/src/main/java/net/minecraft/world/level/Level.java
 +++ b/src/main/java/net/minecraft/world/level/Level.java
 @@ -117,9 +117,9 @@ public abstract class Level implements LevelAccessor, AutoCloseable {
@@ -2276,7 +2276,7 @@ index 2182afd1b95acf14c55bddfeec17dae0a63e1f00..461ac9a464c4a66e302798032c6019bb
          this.shape = voxels;
      }
 diff --git a/src/main/java/net/minecraft/world/ticks/LevelChunkTicks.java b/src/main/java/net/minecraft/world/ticks/LevelChunkTicks.java
-index 9f6c2e5b5d9e8d714a47c770e255d06c0ef7c190..826ced345c97bd2eb04749f42744a086fafc4ce8 100644
+index ac807277a6b26d140ea9873d17c7aa4fb5fe37b2..b46e4be9202eb6002f1e95f12bb875de004e0582 100644
 --- a/src/main/java/net/minecraft/world/ticks/LevelChunkTicks.java
 +++ b/src/main/java/net/minecraft/world/ticks/LevelChunkTicks.java
 @@ -16,14 +16,37 @@ import javax.annotation.Nullable;
@@ -2317,9 +2317,9 @@ index 9f6c2e5b5d9e8d714a47c770e255d06c0ef7c190..826ced345c97bd2eb04749f42744a086
 +    private final IntOpenHashSet allpendingTicks = new IntOpenHashSet();
 +    // Mirai end
  
-     public LevelChunkTicks() {
-     }
-@@ -35,34 +58,133 @@ public class LevelChunkTicks<T> implements SerializableTickContainer<T>, TickCon
+     // Paper start - add dirty flag
+     private boolean dirty;
+@@ -48,36 +71,135 @@ public class LevelChunkTicks<T> implements SerializableTickContainer<T>, TickCon
              this.ticksPerPosition.add(ScheduledTick.probe(savedTick.type(), savedTick.pos()));
          }
  
@@ -2394,12 +2394,13 @@ index 9f6c2e5b5d9e8d714a47c770e255d06c0ef7c190..826ced345c97bd2eb04749f42744a086
      public ScheduledTick<T> poll() {
 -        ScheduledTick<T> scheduledTick = this.tickQueue.poll();
 -        if (scheduledTick != null) {
--            this.ticksPerPosition.remove(scheduledTick);
 +        ScheduledTick<T> orderedTick = this.nextTickQueue.poll();
 +        if (orderedTick != null) {
 +            if (this.nextTickQueue.isEmpty()) {
 +                this.updateNextTickQueue(true);
 +            }
+             this.dirty = true; // Paper - add dirty flag
+-            this.ticksPerPosition.remove(scheduledTick);
 +            this.allpendingTicks.remove(tickToInt(orderedTick.pos(), orderedTick.type()));
 +            return orderedTick;
          }
@@ -2415,9 +2416,10 @@ index 9f6c2e5b5d9e8d714a47c770e255d06c0ef7c190..826ced345c97bd2eb04749f42744a086
      @Override
      public void schedule(ScheduledTick<T> orderedTick) {
 -        if (this.ticksPerPosition.add(orderedTick)) {
--            this.scheduleUnchecked(orderedTick);
 +        int intTick = tickToInt(orderedTick.pos(), orderedTick.type());
 +        if (this.allpendingTicks.add(intTick)) {
+             this.dirty = true; // Paper - add dirty flag
+-            this.scheduleUnchecked(orderedTick);
 +            this.queueTick(orderedTick);
 +        }
 +    }
@@ -2461,7 +2463,7 @@ index 9f6c2e5b5d9e8d714a47c770e255d06c0ef7c190..826ced345c97bd2eb04749f42744a086
  
      private void scheduleUnchecked(ScheduledTick<T> orderedTick) {
          this.tickQueue.add(orderedTick);
-@@ -72,60 +194,93 @@ public class LevelChunkTicks<T> implements SerializableTickContainer<T>, TickCon
+@@ -87,50 +209,84 @@ public class LevelChunkTicks<T> implements SerializableTickContainer<T>, TickCon
  
      }
  
@@ -2486,7 +2488,7 @@ index 9f6c2e5b5d9e8d714a47c770e255d06c0ef7c190..826ced345c97bd2eb04749f42744a086
 -        while(iterator.hasNext()) {
 -            ScheduledTick<T> scheduledTick = iterator.next();
 -            if (predicate.test(scheduledTick)) {
--                iterator.remove();
+-                iterator.remove(); this.dirty = true; // Paper - add dirty flag
 -                this.ticksPerPosition.remove(scheduledTick);
 +        for (ObjectIterator<OrderedTickQueue<T>> tickQueueIterator = this.tickQueuesByTimeAndPriority.values().iterator(); tickQueueIterator.hasNext(); ) {
 +            OrderedTickQueue<T> nextTickQueue = tickQueueIterator.next();
@@ -2497,7 +2499,7 @@ index 9f6c2e5b5d9e8d714a47c770e255d06c0ef7c190..826ced345c97bd2eb04749f42744a086
 +                if (predicate.test(nextTick)) {
 +                    nextTickQueue.setTickAtIndex(i, null);
 +                    this.allpendingTicks.remove(tickToInt(nextTick.pos(), nextTick.type()));
-+                    removed = true;
++                    removed = true; this.dirty = true; // Paper - add dirty flag
 +                }
 +            }
 +            if (removed) {
@@ -2535,6 +2537,7 @@ index 9f6c2e5b5d9e8d714a47c770e255d06c0ef7c190..826ced345c97bd2eb04749f42744a086
 +     */
      @Override
      public ListTag save(long l, Function<T, String> function) {
+         this.lastSaved = l; // Paper - add dirty system to level ticks
 -        ListTag listTag = new ListTag();
 +        ListTag nbtList = new ListTag();
          if (this.pendingTicks != null) {
@@ -2563,6 +2566,10 @@ index 9f6c2e5b5d9e8d714a47c770e255d06c0ef7c190..826ced345c97bd2eb04749f42744a086
 +     */
      public void unpack(long time) {
          if (this.pendingTicks != null) {
+             // Paper start - add dirty system to level chunk ticks
+@@ -139,14 +295,13 @@ public class LevelChunkTicks<T> implements SerializableTickContainer<T>, TickCon
+             }
+             // Paper end - add dirty system to level chunk ticks
              int i = -this.pendingTicks.size();
 -
 -            for(SavedTick<T> savedTick : this.pendingTicks) {

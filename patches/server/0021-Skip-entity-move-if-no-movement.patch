@@ -9,18 +9,18 @@ Original code by RelativityMC, licensed under MIT
 You can find the original code on https://github.com/RelativityMC/VMP-fabric (Yarn mappings)
 
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index c260859b0c8bba464559ad906183301ab62e6590..a4fef073d01a8255530307c73c45fbee66ae931b 100644
+index 9b99a2ebdc642731ee054e4e7e8b4631e0f8c4b2..c03ebb7709df712837720f4aae5771a65fa45ff3 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -398,6 +398,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
-     @javax.annotation.Nullable
+@@ -399,6 +399,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
      private UUID originWorld;
      public boolean freezeLocked = false; // Paper - Freeze Tick Lock API
+     public @Nullable Boolean immuneToFire = null; // Purpur - Fire immune API
 +    private boolean boundingBoxChanged = false; // KeYi
  
      public void setOrigin(@javax.annotation.Nonnull Location location) {
          this.origin = location.toVector();
-@@ -1033,6 +1034,13 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+@@ -1034,6 +1035,13 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
      // Paper end - detailed watchdog information
  
      public void move(MoverType movementType, Vec3 movement) {
@@ -34,7 +34,7 @@ index c260859b0c8bba464559ad906183301ab62e6590..a4fef073d01a8255530307c73c45fbee
          // Paper start - detailed watchdog information
          io.papermc.paper.util.TickThread.ensureTickThread("Cannot move an entity off-main");
          synchronized (this.posLock) {
-@@ -3805,6 +3813,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+@@ -3816,6 +3824,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
      }
  
      public final void setBoundingBox(AABB boundingBox) {
