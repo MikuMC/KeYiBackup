@@ -12,6 +12,9 @@
 
 - 部分移植自 Lithium 的优化 (JettPack)
 - 部分移植自 C2ME 的优化 (Mirai)
+- 部分移植自 Suki 的优化
+- 部分移植自 Carpet Fixes 的优化
+- 优化 VarInts (Paper PR)
 - **(WIP)** 更快的漏斗算法
 - **(WIP)** 更快的流体算法
 - 以及更多...

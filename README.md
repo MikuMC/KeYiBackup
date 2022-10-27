@@ -13,6 +13,9 @@
 
 - Lithium optimizations. (JettPack)
 - C2ME optimizations. (Mirai)
+- Suki optimizations.
+- Carpet Fixes optimizations.
+- Optimize VarInts. (Paper PR)
 - **(WIP)** Faster hopper algorithm.
 - **(WIP)** Faster fluid algorithm.
 - And more...
