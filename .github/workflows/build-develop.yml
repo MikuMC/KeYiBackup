@@ -24,6 +24,7 @@ jobs:
           version: "latest"
           java-version: 17
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+          cache: gradle
       - name: Configure Git
         run: |
           git config --global user.name "KeYi CI"
