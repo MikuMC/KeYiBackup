@@ -5,7 +5,7 @@ Subject: [PATCH] Add Java19 Support for SIMD
 
 
 diff --git a/src/main/java/gg/pufferfish/pufferfish/PufferfishConfig.java b/src/main/java/gg/pufferfish/pufferfish/PufferfishConfig.java
-index c9ae76401278057f87ebef13619a114722e81a1d..a8158f86ac12e2378e17ee3cbcd1f04ceff39209 100644
+index c9ae76401278057f87ebef13619a114722e81a1d..6c6266d04b85aaeb26328b9956c0fa628f19c3d9 100644
 --- a/src/main/java/gg/pufferfish/pufferfish/PufferfishConfig.java
 +++ b/src/main/java/gg/pufferfish/pufferfish/PufferfishConfig.java
 @@ -87,13 +87,13 @@ public class PufferfishConfig {
@@ -13,14 +13,14 @@ index c9ae76401278057f87ebef13619a114722e81a1d..a8158f86ac12e2378e17ee3cbcd1f04c
  		try {
  			SIMDDetection.isEnabled = SIMDDetection.canEnable(PufferfishLogger.LOGGER);
 -			SIMDDetection.versionLimited = SIMDDetection.getJavaVersion() != 17 && SIMDDetection.getJavaVersion() != 18;
-+			SIMDDetection.versionLimited = SIMDDetection.getJavaVersion() < 17;
++			SIMDDetection.versionLimited = SIMDDetection.getJavaVersion() < 17; // KeYi - Add Java19 Support for SIMD
  		} catch (NoClassDefFoundError | Exception ignored) {}
  		
  		if (SIMDDetection.isEnabled) {
  			PufferfishLogger.LOGGER.info("SIMD operations detected as functional. Will replace some operations with faster versions.");
  		} else if (SIMDDetection.versionLimited) {
 -			PufferfishLogger.LOGGER.warning("Will not enable SIMD! These optimizations are only safely supported on Java 17 and Java 18.");
-+			PufferfishLogger.LOGGER.warning("Will not enable SIMD! These optimizations are only safely supported in Java 17 and above.");
++			PufferfishLogger.LOGGER.warning("Will not enable SIMD! These optimizations are only safely supported in Java 17 and above."); // KeYi - Add Java19 Support for SIMD
  		} else {
  			PufferfishLogger.LOGGER.warning("SIMD operations are available for your server, but are not configured!");
  			PufferfishLogger.LOGGER.warning("To enable additional optimizations, add \"--add-modules=jdk.incubator.vector\" to your startup flags, BEFORE the \"-jar\".");

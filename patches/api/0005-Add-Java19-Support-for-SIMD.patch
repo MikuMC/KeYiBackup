@@ -5,7 +5,7 @@ Subject: [PATCH] Add Java19 Support for SIMD
 
 
 diff --git a/src/main/java/gg/pufferfish/pufferfish/simd/SIMDChecker.java b/src/main/java/gg/pufferfish/pufferfish/simd/SIMDChecker.java
-index 93f5d7ca36e043e6c0f959450d38e6946b348eaf..7024a47b0de5083c3ba49c8e45b4c4b1369ab2c5 100644
+index 93f5d7ca36e043e6c0f959450d38e6946b348eaf..d1b6ad8768355889e243f2868335b7c7f0d07b27 100644
 --- a/src/main/java/gg/pufferfish/pufferfish/simd/SIMDChecker.java
 +++ b/src/main/java/gg/pufferfish/pufferfish/simd/SIMDChecker.java
 @@ -15,7 +15,7 @@ public class SIMDChecker {
@@ -13,7 +13,7 @@ index 93f5d7ca36e043e6c0f959450d38e6946b348eaf..7024a47b0de5083c3ba49c8e45b4c4b1
  	public static boolean canEnable(Logger logger) {
  		try {
 -			if (SIMDDetection.getJavaVersion() != 17 && SIMDDetection.getJavaVersion() != 18) {
-+			if (SIMDDetection.getJavaVersion() < 17) {
++			if (SIMDDetection.getJavaVersion() < 17) { // KeYi - Add Java19 Support for SIMD
  				return false;
  			} else {
  				SIMDDetection.testRun = true;
