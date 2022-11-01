@@ -21,7 +21,7 @@ index 467f60dcbed645d773e7e3e042d2bbbd8f5bb589..89f2bffb6d3458f885e6098ea770c468
      public ServerPlayer(MinecraftServer server, ServerLevel world, GameProfile profile, @Nullable ProfilePublicKey publicKey) {
          super(world, world.getSharedSpawnPos(), world.getSharedSpawnAngle(), profile, publicKey);
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index 755d15af7cc0e47c1700db55f51e8169a521bfb8..cd62c541141964406f2eb2cc835491ff93e88370 100644
+index 82634bd0ab2792f637573c2ee7d9d00ba1104900..4ffabb125c3502b64be8d8c334d3e18bae302573 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
 @@ -961,12 +961,12 @@ public abstract class PlayerList {
