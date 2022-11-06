@@ -106,10 +106,10 @@ index b2860114d52c52360e1e559d0c2c5ee4789dee97..8c09bdc0bd0af7ab9c5b3cad4067e1e0
  
                  @Override
 diff --git a/src/main/java/net/minecraft/network/Connection.java b/src/main/java/net/minecraft/network/Connection.java
-index 141ea294d12411d58771ea1ad58383e84b6ba048..20763daf8921f78f8c017d3dbcafbd2c8527abcf 100644
+index 2a71c8e6901944af90c4ad4dfa39dba7fafc0126..2e79bc8218454d1714dc878b6f07d3ed289fed68 100644
 --- a/src/main/java/net/minecraft/network/Connection.java
 +++ b/src/main/java/net/minecraft/network/Connection.java
-@@ -355,7 +355,11 @@ public class Connection extends SimpleChannelInboundHandler<Packet<?>> {
+@@ -356,7 +356,11 @@ public class Connection extends SimpleChannelInboundHandler<Packet<?>> {
                  packet instanceof net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket ||
                  packet instanceof net.minecraft.network.protocol.game.ClientboundSetTitlesAnimationPacket ||
                  packet instanceof net.minecraft.network.protocol.game.ClientboundClearTitlesPacket ||
@@ -122,7 +122,7 @@ index 141ea294d12411d58771ea1ad58383e84b6ba048..20763daf8921f78f8c017d3dbcafbd2c
          }
          // Paper end
      }
-@@ -406,7 +410,15 @@ public class Connection extends SimpleChannelInboundHandler<Packet<?>> {
+@@ -407,7 +411,15 @@ public class Connection extends SimpleChannelInboundHandler<Packet<?>> {
      private void sendPacket(Packet<?> packet, @Nullable PacketSendListener callbacks, Boolean flushConditional) {
          this.packetWrites.getAndIncrement(); // must be befeore using canFlush
          boolean effectiveFlush = flushConditional == null ? this.canFlush : flushConditional.booleanValue();
