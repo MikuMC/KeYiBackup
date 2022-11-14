@@ -510,7 +510,7 @@ index 5420915b21bbd17eeaba2ba45e08399a3abe6952..9a4c782b8be6a837a5c1a07e930b6bb8
  
      @Override
 diff --git a/src/main/java/net/minecraft/server/level/ChunkMap.java b/src/main/java/net/minecraft/server/level/ChunkMap.java
-index 2182ee049defee88067aa61cee42d3a0122061b7..8d19dcf7a91d1e9c17d03e6e339885d99647ec92 100644
+index c1db2333ce5fe87fd1ce059cbd8ae6d77abf6f06..451f1c08af946c7b2db705d613a53bc2013bff66 100644
 --- a/src/main/java/net/minecraft/server/level/ChunkMap.java
 +++ b/src/main/java/net/minecraft/server/level/ChunkMap.java
 @@ -606,20 +606,20 @@ public class ChunkMap extends ChunkStorage implements ChunkHolder.PlayerProvider
@@ -1120,7 +1120,7 @@ index 00fe84ae4fee41b365223f836c82e1688fe322ee..71ff2cfc4aba6da71911ea717e355764
  
          } else if (close) { chunkproviderserver.close(false); } // Paper - rewrite chunk system
 diff --git a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
-index 66c632f9a824e705420b9bb86de294f0e7305c50..4c5d7f00b68e4ec103a5841beaccfbdbef30f130 100644
+index 57dd2f5190e00bddbc575044ce5d9cc613e3c0df..833d7c3007dfd3407371beb08f2187a037c6fdee 100644
 --- a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
 +++ b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
 @@ -2612,7 +2612,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Tic
@@ -1151,7 +1151,7 @@ index 66c632f9a824e705420b9bb86de294f0e7305c50..4c5d7f00b68e4ec103a5841beaccfbdb
      }
      // CraftBukkit end
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index cd62c541141964406f2eb2cc835491ff93e88370..d2f12947db4106c3a5608a2d8be347b1ccc82c4b 100644
+index 4ffabb125c3502b64be8d8c334d3e18bae302573..3ab8610f54a8042517b7b48cb28dfc34e51f47c3 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
 @@ -1287,7 +1287,7 @@ public abstract class PlayerList {
@@ -1314,7 +1314,7 @@ index aa27ab72d30f917ea41045db16b6f59f1442ea77..09ae98db728bade8121587e9ded6f3ab
      }
  
 diff --git a/src/main/java/net/minecraft/world/level/NaturalSpawner.java b/src/main/java/net/minecraft/world/level/NaturalSpawner.java
-index 6b8356e592bfca69cf785457284c99e47e360bd6..eceae1230e672d95491405f3f7c550c90ea9b138 100644
+index 50712b2222703fff01378e2ececb0fc0dba60b65..a182b3c804cf56855e15290f826fdebdc289a552 100644
 --- a/src/main/java/net/minecraft/world/level/NaturalSpawner.java
 +++ b/src/main/java/net/minecraft/world/level/NaturalSpawner.java
 @@ -131,8 +131,8 @@ public final class NaturalSpawner {
@@ -1349,7 +1349,7 @@ index 6b8356e592bfca69cf785457284c99e47e360bd6..eceae1230e672d95491405f3f7c550c9
                              if (entityhuman != null) {
                                  double d2 = entityhuman.distanceToSqr(d0, (double) i, d1);
 diff --git a/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java b/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java
-index ebb4f75580ae8e2a673313ea11139f987624454f..d9638971ac4d8dfaf4351cebb5ff6ea16327091e 100644
+index 7249fe1d53c22d4164c68cb89b8df95e92873d1b..e0e4a924e926b086699998095a1abddd01d8c002 100644
 --- a/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java
 +++ b/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java
 @@ -53,10 +53,6 @@ import net.minecraft.world.level.material.Fluids;

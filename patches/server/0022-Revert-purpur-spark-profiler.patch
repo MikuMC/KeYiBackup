@@ -5,7 +5,7 @@ Subject: [PATCH] Revert purpur spark profiler
 
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 9e47bbefdb373a75a9903b19c23e9191b9c84846..d6099877d68c795ef980f82389c46baf239bacfd 100644
+index a57d633c439f66cb27209f56abf391e84bbb52c5..ef0f8c37308dc2fa97bff437319a850526e660c2 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -436,38 +436,7 @@ public final class CraftServer implements Server {
