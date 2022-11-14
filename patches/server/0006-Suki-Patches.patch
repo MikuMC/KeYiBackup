@@ -140,10 +140,10 @@ index 2a71c8e6901944af90c4ad4dfa39dba7fafc0126..2e79bc8218454d1714dc878b6f07d3ed
          ConnectionProtocol enumprotocol = ConnectionProtocol.getProtocolForPacket(packet);
          ConnectionProtocol enumprotocol1 = this.getCurrentProtocol();
 diff --git a/src/main/java/net/minecraft/server/Main.java b/src/main/java/net/minecraft/server/Main.java
-index 88ef769abfa163f923258d1f83d47b28c491eaca..9ae43d359deee3172f8f059adc94dffee1ec303f 100644
+index 0066b1abc008d245825abf1d256cb87fa9c2d877..5efe002efcfa43b2cdd90f2dc127fee89b25b82b 100644
 --- a/src/main/java/net/minecraft/server/Main.java
 +++ b/src/main/java/net/minecraft/server/Main.java
-@@ -327,7 +327,7 @@ public class Main {
+@@ -330,7 +330,7 @@ public class Main {
      // Paper start - fix and optimise world upgrading
      public static void convertWorldButItWorks(net.minecraft.resources.ResourceKey<net.minecraft.world.level.dimension.LevelStem> dimensionType, net.minecraft.world.level.storage.LevelStorageSource.LevelStorageAccess worldSession,
                                                DataFixer dataFixer, Optional<net.minecraft.resources.ResourceKey<com.mojang.serialization.Codec<? extends net.minecraft.world.level.chunk.ChunkGenerator>>> generatorKey, boolean removeCaches) {
@@ -239,7 +239,7 @@ index 13e749a3c40f0b2cc002f13675a9a56eedbefdac..2995d5f80dd2e9b4b8fbbafe3567a6f2
              LootTable lootTable = this.level.getServer().getLootTables().get(this.lootTable);
              if (player instanceof ServerPlayer) {
 diff --git a/src/main/java/net/minecraft/world/level/chunk/storage/ChunkSerializer.java b/src/main/java/net/minecraft/world/level/chunk/storage/ChunkSerializer.java
-index 34e351e04ac57e47e3cea671c61cc01d17983b77..6b23a65378c7ac05d03bf9e39c3ac428a4d56597 100644
+index 577eefd0990b0d6ae237dd685976975d3532d7fa..1ef21e74e353f178d9031ef253765593147263bb 100644
 --- a/src/main/java/net/minecraft/world/level/chunk/storage/ChunkSerializer.java
 +++ b/src/main/java/net/minecraft/world/level/chunk/storage/ChunkSerializer.java
 @@ -1,5 +1,6 @@

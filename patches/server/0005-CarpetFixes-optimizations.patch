@@ -183,7 +183,7 @@ index 88f10d729aa1e0a01790521821d691a0ecd373a2..45b2aa542969798a5a3b73af78de21cc
      // Paper end
  }
 diff --git a/src/main/java/net/minecraft/util/Mth.java b/src/main/java/net/minecraft/util/Mth.java
-index ec587cf6592a1dc0d90d6f54af1bdfab97aec7c6..0afd56a8b27fce044f7d43b1e4f86b617c0b827f 100644
+index c852331f0c9dddbfe29e88e2dca1dceb2d7cee44..67ca2a39236ecfaeb54294b8b6b9fdb109b54513 100644
 --- a/src/main/java/net/minecraft/util/Mth.java
 +++ b/src/main/java/net/minecraft/util/Mth.java
 @@ -792,7 +792,7 @@ public class Mth {
@@ -356,7 +356,7 @@ index 954a12c23da96a07cd175f6f2eb28e8c5d2a8c3d..e5bef70e9a5abfec859757bc47b003d2
      private static CraftingContainer makeContainer(DyeColor firstColor, DyeColor secondColor) {
          CraftingContainer inventorycrafting = new CraftingContainer(new AbstractContainerMenu((MenuType) null, -1) {
 diff --git a/src/main/java/net/minecraft/world/entity/player/Player.java b/src/main/java/net/minecraft/world/entity/player/Player.java
-index e87a436711e179a4384630de41188c09a75a7f0d..5668e6fa7f560199c352dbed629dbc6897d468a7 100644
+index 1b7e38538881ba00ffdbe9226952627151532c5c..ff57940690dd9a1f43dab16d5b26432210659cc4 100644
 --- a/src/main/java/net/minecraft/world/entity/player/Player.java
 +++ b/src/main/java/net/minecraft/world/entity/player/Player.java
 @@ -1126,7 +1126,7 @@ public abstract class Player extends LivingEntity {
@@ -377,7 +377,7 @@ index e87a436711e179a4384630de41188c09a75a7f0d..5668e6fa7f560199c352dbed629dbc68
                  }
  
              }
-@@ -1462,7 +1462,7 @@ public abstract class Player extends LivingEntity {
+@@ -1471,7 +1471,7 @@ public abstract class Player extends LivingEntity {
                          if (target instanceof LivingEntity) {
                              float f5 = f3 - ((LivingEntity) target).getHealth();
  
@@ -386,7 +386,7 @@ index e87a436711e179a4384630de41188c09a75a7f0d..5668e6fa7f560199c352dbed629dbc68
                              if (j > 0) {
                                  // CraftBukkit start - Call a combust event when somebody hits with a fire enchanted item
                                  EntityCombustByEntityEvent combustEvent = new EntityCombustByEntityEvent(this.getBukkitEntity(), target.getBukkitEntity(), j * 4);
-@@ -1735,29 +1735,29 @@ public abstract class Player extends LivingEntity {
+@@ -1744,29 +1744,29 @@ public abstract class Player extends LivingEntity {
              int i;
  
              if (this.isSwimming()) {
@@ -421,7 +421,7 @@ index e87a436711e179a4384630de41188c09a75a7f0d..5668e6fa7f560199c352dbed629dbc68
                  if (i > 0) {
                      if (this.isSprinting()) {
                          this.awardStat(Stats.SPRINT_ONE_CM, i);
-@@ -1771,10 +1771,10 @@ public abstract class Player extends LivingEntity {
+@@ -1780,10 +1780,10 @@ public abstract class Player extends LivingEntity {
                      }
                  }
              } else if (this.isFallFlying()) {
@@ -434,7 +434,7 @@ index e87a436711e179a4384630de41188c09a75a7f0d..5668e6fa7f560199c352dbed629dbc68
                  if (i > 25) {
                      this.awardStat(Stats.FLY_ONE_CM, i);
                  }
-@@ -1785,7 +1785,7 @@ public abstract class Player extends LivingEntity {
+@@ -1794,7 +1794,7 @@ public abstract class Player extends LivingEntity {
  
      public void checkRidingStatistics(double dx, double dy, double dz) {
          if (this.isPassenger()) {
@@ -443,7 +443,7 @@ index e87a436711e179a4384630de41188c09a75a7f0d..5668e6fa7f560199c352dbed629dbc68
  
              if (i > 0) {
                  Entity entity = this.getVehicle();
-@@ -1812,7 +1812,7 @@ public abstract class Player extends LivingEntity {
+@@ -1821,7 +1821,7 @@ public abstract class Player extends LivingEntity {
              return false;
          } else {
              if (fallDistance >= 2.0F) {

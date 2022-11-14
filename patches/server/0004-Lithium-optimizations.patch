@@ -1276,7 +1276,7 @@ index 50a9f33aa31e9273c7c52d4bb2b02f0f884f7ba5..6f181fc878a96b09f126ea8d3b19ce3e
      @Override
      public Iterator<T> iterator() {
 diff --git a/src/main/java/net/minecraft/util/Mth.java b/src/main/java/net/minecraft/util/Mth.java
-index 9b22034aa655ceb0da151d9d8ca3147f6487889a..ec587cf6592a1dc0d90d6f54af1bdfab97aec7c6 100644
+index 46e3e884890a23f5f90efc795a21566dd40804df..c852331f0c9dddbfe29e88e2dca1dceb2d7cee44 100644
 --- a/src/main/java/net/minecraft/util/Mth.java
 +++ b/src/main/java/net/minecraft/util/Mth.java
 @@ -32,6 +32,7 @@ public class Mth {
@@ -1378,10 +1378,10 @@ index 5d8e9bdf5538b19681f21949368d862fab8a89ad..2224245a985dfe78565dfdb42840d3ed
 +    @Override public <T> void compact(Palette<T> srcPalette, Palette<T> dstPalette, short[] out) {} // JettPack
  }
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 967647c7dc0a4c2d762e7133fe969106f7d8ecba..dbaece0cbf521aada6bda2a2266edf0e97f3055f 100644
+index 193b6621d6506a04bc1f9f23571aeb2e635d562c..6f2518ec1be9af4fa00d719c50cbe64e4e57fcbc 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -2589,39 +2589,64 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
+@@ -2590,39 +2590,64 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {
          return !this.isRemoved();
      }
  
@@ -1513,7 +1513,7 @@ index 1ec9a48f2f44f5bd647e0661423ae90970aee262..219c7dcbe6bee5054aff0640a80d620e
  
          if (flag && !this.onGround && !this.isPassenger() && !this.hasEffect(MobEffects.LEVITATION)) {
 diff --git a/src/main/java/net/minecraft/world/entity/ai/attributes/AttributeMap.java b/src/main/java/net/minecraft/world/entity/ai/attributes/AttributeMap.java
-index 00fc98797aea23e1f586b8e7f85fc27e2019352f..1094792600f30632b2aa79dd0025dac3e4937aa6 100644
+index 2c915c765ceef3ec28f5a58fa9a587282c1a906a..a3f42f8e9f31efce278481e115b1e2b683af078f 100644
 --- a/src/main/java/net/minecraft/world/entity/ai/attributes/AttributeMap.java
 +++ b/src/main/java/net/minecraft/world/entity/ai/attributes/AttributeMap.java
 @@ -16,11 +16,13 @@ import net.minecraft.nbt.CompoundTag;
@@ -1630,7 +1630,7 @@ index 6a0a1731fd6804eb69d3641213712d31bce085b2..06110d58342d07cf454f1829140855ac
  
      @Nullable
 diff --git a/src/main/java/net/minecraft/world/level/GameRules.java b/src/main/java/net/minecraft/world/level/GameRules.java
-index 17e869074b8cf29a8c3280499a27e95179896750..97a5aec7da267b8b9f6d191c871316ccb89c448c 100644
+index 9fa0758c0a8c74dec6cfe8a16585ace1cf45df96..f912b0ec9f58861efcc4fbd65604bd0a31c6d7d5 100644
 --- a/src/main/java/net/minecraft/world/level/GameRules.java
 +++ b/src/main/java/net/minecraft/world/level/GameRules.java
 @@ -27,6 +27,7 @@ import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
@@ -1714,7 +1714,7 @@ index e94ca6283a0471a49b31942de763472ccb989dcb..9212786dd26a48999e7d7159a77f19b6
      }
  }
 diff --git a/src/main/java/net/minecraft/world/level/block/piston/PistonMovingBlockEntity.java b/src/main/java/net/minecraft/world/level/block/piston/PistonMovingBlockEntity.java
-index 7c59d44a3bafdc65f453d77ff3e25cffb742ad6c..636721a111cad13e7329f1157981ca03a8f339b3 100644
+index 4b61602a1d2d6817272e02cfd282ac5dabbd976d..57bd494395de37a34452e9c7d2899b249011651c 100644
 --- a/src/main/java/net/minecraft/world/level/block/piston/PistonMovingBlockEntity.java
 +++ b/src/main/java/net/minecraft/world/level/block/piston/PistonMovingBlockEntity.java
 @@ -52,6 +52,74 @@ public class PistonMovingBlockEntity extends BlockEntity {
