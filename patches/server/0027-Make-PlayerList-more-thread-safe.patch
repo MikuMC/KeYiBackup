@@ -1,7 +1,9 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: stonar96 <minecraft.stonar96@gmail.com>
 Date: Mon, 5 Apr 2021 02:30:01 +0200
-Subject: [PATCH] PaperPR Make PlayerList more thread safe
+Subject: [PATCH] Make PlayerList more thread safe
+
+From Paper's pull request.
 
 Original license: GPLv3
 Original project: https://github.com/PaperMC/Paper
