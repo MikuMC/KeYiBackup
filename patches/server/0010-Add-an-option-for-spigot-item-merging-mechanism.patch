@@ -5,22 +5,21 @@ Subject: [PATCH] Add an option for spigot item merging mechanism
 
 
 diff --git a/src/main/java/cc/keyimc/keyi/KeyiConfig.java b/src/main/java/cc/keyimc/keyi/KeyiConfig.java
-index c93bb951fd456af9e8f030b6f5c7989925c3556f..2ccee00d230f4801c4ed4b80b8415a249e933133 100644
+index 8884a2471b4b7c5cabf1c0c767710ba69c7ae4ec..4f08f2e40f5bc3bc5a87bf3a34945afdec65f288 100644
 --- a/src/main/java/cc/keyimc/keyi/KeyiConfig.java
 +++ b/src/main/java/cc/keyimc/keyi/KeyiConfig.java
-@@ -149,6 +149,12 @@ public final class KeyiConfig {
+@@ -148,4 +148,10 @@ public final class KeyiConfig {
+     private static void fixes() {
          fixTripwireDuping = getBoolean("fixes.fix-tripwire-duping", fixTripwireDuping);
      }
- 
++
 +    public static boolean useSpigotItemMergingMechanism = true;
 +
 +    private static void performance() {
 +        useSpigotItemMergingMechanism = getBoolean("performance.use-spigot-item-merging-mechanism", useSpigotItemMergingMechanism);
 +    }
-+
-     // Suki start - only refresh lootables for players
- 
-     public static boolean onlyRefreshForPlayers = false;
+ }
+\ No newline at end of file
 diff --git a/src/main/java/net/minecraft/world/entity/item/ItemEntity.java b/src/main/java/net/minecraft/world/entity/item/ItemEntity.java
 index aa1c929d948cea8f6212330f922eb5f1d9b9bb97..bb72741300cedd1c37fc5611c6472292bdf245a1 100644
 --- a/src/main/java/net/minecraft/world/entity/item/ItemEntity.java

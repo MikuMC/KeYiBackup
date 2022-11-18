@@ -5,7 +5,7 @@ Subject: [PATCH] Disable arrow despawn counter by default
 
 
 diff --git a/src/main/java/org/purpurmc/purpur/PurpurWorldConfig.java b/src/main/java/org/purpurmc/purpur/PurpurWorldConfig.java
-index daa437f3aaebed4d917fde65d75a8a941755a764..576a50c0279f5336d606b53aeb2ed76785e1d538 100644
+index bb352ed86e4047e38ad27900f72fc0ddb741bf71..2cc8eeedfd5729fd324b10cb4b2a6298dad39e9d 100644
 --- a/src/main/java/org/purpurmc/purpur/PurpurWorldConfig.java
 +++ b/src/main/java/org/purpurmc/purpur/PurpurWorldConfig.java
 @@ -116,7 +116,7 @@ public class PurpurWorldConfig {

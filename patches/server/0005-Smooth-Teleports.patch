@@ -9,7 +9,7 @@ Original license: MIT
 Original project: https://github.com/Cryptite/Slice
 
 diff --git a/src/main/java/net/minecraft/server/level/ServerPlayer.java b/src/main/java/net/minecraft/server/level/ServerPlayer.java
-index 467f60dcbed645d773e7e3e042d2bbbd8f5bb589..89f2bffb6d3458f885e6098ea770c46867f6419d 100644
+index 14b2c36049c91a8abfc545e2fb5e3d6f908370e8..77c00de9b94531f8136469e04e535a43829c0a60 100644
 --- a/src/main/java/net/minecraft/server/level/ServerPlayer.java
 +++ b/src/main/java/net/minecraft/server/level/ServerPlayer.java
 @@ -271,6 +271,7 @@ public class ServerPlayer extends Player {

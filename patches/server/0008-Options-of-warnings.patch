@@ -10,13 +10,14 @@ Let users decide if we should warn while running in offline mode
 Let users decide if we should warn while running in proxy mode
 
 diff --git a/src/main/java/cc/keyimc/keyi/KeyiConfig.java b/src/main/java/cc/keyimc/keyi/KeyiConfig.java
-index 8b9a2f06b0a61cfdd493eeddde512f0abd17f49e..98705c4206906404fed31c87fb03737fe3771b0a 100644
+index bc9403d002ef24e71be67a962d099f5d73db9540..5582c15a37fbbf74d2039ba15d67684f5294a46d 100644
 --- a/src/main/java/cc/keyimc/keyi/KeyiConfig.java
 +++ b/src/main/java/cc/keyimc/keyi/KeyiConfig.java
-@@ -133,6 +133,16 @@ public final class KeyiConfig {
+@@ -132,4 +132,14 @@ public final class KeyiConfig {
+     public static void reload() {
          KeyiConfig.init((File) MinecraftServer.getServer().options.valueOf("keyi-settings"));
      }
- 
++
 +    public static boolean enableRootUserWarning = true;
 +    public static boolean enableOfflineModeWarning = true;
 +    public static boolean enableProxyUnsafeWarning = true;
@@ -26,10 +27,8 @@ index 8b9a2f06b0a61cfdd493eeddde512f0abd17f49e..98705c4206906404fed31c87fb03737f
 +        enableOfflineModeWarning = getBoolean("misc.enable-offline-mode-warning", enableOfflineModeWarning);
 +        enableProxyUnsafeWarning = getBoolean("misc.enable-proxy-unsafe-warning", enableProxyUnsafeWarning);
 +    }
-+
-     // Suki start - only refresh lootables for players
- 
-     public static boolean onlyRefreshForPlayers = false;
+ }
+\ No newline at end of file
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 index a9c4f1192f53fea55b2f5edc8a91b6911489e2d3..5420915b21bbd17eeaba2ba45e08399a3abe6952 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java

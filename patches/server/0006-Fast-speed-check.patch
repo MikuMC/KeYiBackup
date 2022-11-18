@@ -14,7 +14,7 @@ doing questionable/buggy ones, and claiming breathtaking performance improvement
 any of those Spigot forks!
 
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 6f2518ec1be9af4fa00d719c50cbe64e4e57fcbc..9701a89149cc2bd7330b23c441b51677be0bdc18 100644
+index 193b6621d6506a04bc1f9f23571aeb2e635d562c..7ef574008f413008427d075860c9eb5debeef4f4 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
 @@ -1195,7 +1195,14 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {

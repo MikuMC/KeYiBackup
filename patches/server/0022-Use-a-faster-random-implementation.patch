@@ -1,12 +1,12 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: nostalgic853 <yuu8583@proton.me>
-Date: Mon, 24 Oct 2022 10:52:07 +0800
+Date: Fri, 18 Nov 2022 23:39:13 +0800
 Subject: [PATCH] Use a faster random implementation
 
 
 diff --git a/src/main/java/cc/keyimc/keyi/utils/FastRandom.java b/src/main/java/cc/keyimc/keyi/utils/FastRandom.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..a9b3a467e7dbfdc78c11f04e6bb5a9642c20470c
+index 0000000000000000000000000000000000000000..ca75a84c2fe0b163f5618f408372b38e048ae2cd
 --- /dev/null
 +++ b/src/main/java/cc/keyimc/keyi/utils/FastRandom.java
 @@ -0,0 +1,395 @@
@@ -423,29 +423,8 @@ index e5ea9f27a1936ed9e329e74317c91c5df89b9fbd..89a41d396162a1c2eb2df5192b0d888b
  
      private long lastFill = -1;
      private long nextRefill = -1;
-diff --git a/src/main/java/me/jellysquid/mods/lithium/common/cached_blockpos_iteration/IterateOutwardsCache.java b/src/main/java/me/jellysquid/mods/lithium/common/cached_blockpos_iteration/IterateOutwardsCache.java
-index a5d3aa309d3fdaab9e0fea2dfb91a080a3ac1193..384733b2b0bc7c5108ebdc725c0d13548bd349a3 100644
---- a/src/main/java/me/jellysquid/mods/lithium/common/cached_blockpos_iteration/IterateOutwardsCache.java
-+++ b/src/main/java/me/jellysquid/mods/lithium/common/cached_blockpos_iteration/IterateOutwardsCache.java
-@@ -6,6 +6,7 @@ import java.util.Iterator;
- import java.util.Random;
- import java.util.concurrent.ConcurrentHashMap;
- import net.minecraft.core.BlockPos;
-+import cc.keyimc.keyi.utils.FastRandom; // KeYi
- 
- /**
-  * @author 2No2Name, original implemenation by SuperCoder7979 and Gegy1000
-@@ -22,7 +23,7 @@ public class IterateOutwardsCache {
-     public IterateOutwardsCache(int capacity) {
-         this.capacity = capacity;
-         this.table = new ConcurrentHashMap<>(31);
--        this.random = new Random();
-+        this.random = new FastRandom(); // KeYi - use a faster random
-     }
- 
-     private void fillPositionsWithIterateOutwards(LongList entry, int xRange, int yRange, int zRange) {
 diff --git a/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java b/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java
-index 620173eef4c2f30a97a4c2f8049ea01fcc60d0b2..1ef5f03a332e832817be132bbbf3ac1021f085d1 100644
+index e0e4a924e926b086699998095a1abddd01d8c002..f55584f7255012599fdce018b85e2e21e4660849 100644
 --- a/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java
 +++ b/src/main/java/net/minecraft/world/level/chunk/LevelChunk.java
 @@ -53,6 +53,10 @@ import net.minecraft.world.level.material.Fluids;
@@ -461,7 +440,7 @@ index 620173eef4c2f30a97a4c2f8049ea01fcc60d0b2..1ef5f03a332e832817be132bbbf3ac10
  
 @@ -932,7 +936,7 @@ public class LevelChunk extends ChunkAccess {
              if (this.needsDecoration) {
-                 //try (co.aikar.timings.Timing ignored = this.level.timings.chunkLoadPopulate.startTiming()) { // Paper // Purpur
+                 try (co.aikar.timings.Timing ignored = this.level.timings.chunkLoadPopulate.startTiming()) { // Paper
                  this.needsDecoration = false;
 -                java.util.Random random = new java.util.Random();
 +                Random random = new FastRandom();
@@ -469,7 +448,7 @@ index 620173eef4c2f30a97a4c2f8049ea01fcc60d0b2..1ef5f03a332e832817be132bbbf3ac10
                  long xRand = random.nextLong() / 2L * 2L + 1L;
                  long zRand = random.nextLong() / 2L * 2L + 1L;
 diff --git a/src/main/java/net/minecraft/world/level/chunk/storage/RegionFile.java b/src/main/java/net/minecraft/world/level/chunk/storage/RegionFile.java
-index fc3442b4c7e1f22080fe6bf36d4fade162d6709e..7de2b353db5b76089c10cba826898bcd228f4ad9 100644
+index dcfe090c269d4cbcc2eb1b6f85392848bb34656c..ef8909c9c13c8f46ec6d452f0d14c9a1119e0edf 100644
 --- a/src/main/java/net/minecraft/world/level/chunk/storage/RegionFile.java
 +++ b/src/main/java/net/minecraft/world/level/chunk/storage/RegionFile.java
 @@ -26,6 +26,7 @@ import net.minecraft.nbt.CompoundTag;
@@ -490,7 +469,7 @@ index fc3442b4c7e1f22080fe6bf36d4fade162d6709e..7de2b353db5b76089c10cba826898bcd
      }
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index dabf1649f5bf14ec17dad6d43dcd7e2b7df255d3..ed754df76d3f86e2230c88ebb45125fe6af1e507 100644
+index 41fafd4a1583e748d763439e8838739ec1ff8e1d..48c35afdbb8b08dbc1279bc57ea44bccb65b2a8a 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 @@ -135,6 +135,7 @@ import org.bukkit.util.Consumer;
