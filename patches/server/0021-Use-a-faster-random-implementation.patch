@@ -6,7 +6,7 @@ Subject: [PATCH] Use a faster random implementation
 
 diff --git a/src/main/java/cc/keyimc/keyi/utils/FastRandom.java b/src/main/java/cc/keyimc/keyi/utils/FastRandom.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..ca75a84c2fe0b163f5618f408372b38e048ae2cd
+index 0000000000000000000000000000000000000000..a9b3a467e7dbfdc78c11f04e6bb5a9642c20470c
 --- /dev/null
 +++ b/src/main/java/cc/keyimc/keyi/utils/FastRandom.java
 @@ -0,0 +1,395 @@
