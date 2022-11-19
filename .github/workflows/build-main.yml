@@ -42,7 +42,6 @@ jobs:
           export GITHUB_USERNAME=KeyiCI
           echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
           export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
-          cd ./KeYi-API/
           ./gradlew publish
       - name: Rename Jar
         run: "mv build/libs/keyi-paperclip-${{ env.MC_VERSION }}-R0.1-SNAPSHOT-reobf.jar build/libs/keyi-${{ env.ref }}-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
