@@ -9,7 +9,7 @@ Original code by RelativityMC, licensed under MIT
 You can find the original code on https://github.com/RelativityMC/VMP-fabric (Yarn mappings)
 
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 7ef574008f413008427d075860c9eb5debeef4f4..83eece9c61f8316221a304f3dd69a7fe3cce3727 100644
+index f2ec048260bf93663b782e95f2b3cc255144e94d..9bf3ed2abbbc3dc161167c1d97f8b96e68dc621a 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
 @@ -399,6 +399,7 @@ public abstract class Entity implements Nameable, EntityAccess, CommandSource {

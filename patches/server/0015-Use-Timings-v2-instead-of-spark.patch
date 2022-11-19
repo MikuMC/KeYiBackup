@@ -789,7 +789,7 @@ index 9d13ef8c597b9ca11280ad1d3249d13bbab4ac6f..0b75caca3f77980505d0689601d920fb
          }
  
 diff --git a/src/main/java/net/minecraft/server/level/ServerLevel.java b/src/main/java/net/minecraft/server/level/ServerLevel.java
-index c888e654ab9449bfdc7dfe16078eb0786ae6c15e..71ff2cfc4aba6da71911ea717e3557647c41c210 100644
+index 2c53e7915bdf299ce7ecfc0aade0716c30cdf0d3..21475834d44e2d0da94c9bf941555620fe826a2f 100644
 --- a/src/main/java/net/minecraft/server/level/ServerLevel.java
 +++ b/src/main/java/net/minecraft/server/level/ServerLevel.java
 @@ -653,12 +653,12 @@ public class ServerLevel extends Level implements WorldGenLevel {

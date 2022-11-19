@@ -7,7 +7,7 @@ Original code by PatinaMC, licensed under GNU General Public License v3.0
 You can find the original code on https://github.com/PatinaMC/Patina
 
 diff --git a/src/main/java/net/minecraft/server/level/ServerPlayer.java b/src/main/java/net/minecraft/server/level/ServerPlayer.java
-index 77c00de9b94531f8136469e04e535a43829c0a60..e633be38543a6eb4b2e0e1d834996400762b2536 100644
+index 2162082984f343b31a3800811a1bb8e0b1dc6e41..7210ec5ac726b615b0373dc551c915f6b1bf5848 100644
 --- a/src/main/java/net/minecraft/server/level/ServerPlayer.java
 +++ b/src/main/java/net/minecraft/server/level/ServerPlayer.java
 @@ -387,7 +387,7 @@ public class ServerPlayer extends Player {
