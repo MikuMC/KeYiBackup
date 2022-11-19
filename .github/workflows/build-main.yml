@@ -36,6 +36,14 @@ jobs:
       - name: Build a paperclip jar
         run: |
           ./gradlew -Dorg.gradle.jvmargs="-Dgraal.CompilerConfiguration=enterprise -Dgraal.UsePriorityInlining=true -Dgraal.Vectorization=true -Dgraal.OptDuplication=true --add-modules jdk.incubator.vector" createReobfPaperclipJar --stacktrace --no-daemon
+      - name: Build & Publish API
+        run: |
+          echo "GITHUB_USERNAME=KeyiCI" >> $GITHUB_ENV
+          export GITHUB_USERNAME=KeyiCI
+          echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+          export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+          cd ./KeYi-API/
+          ./gradlew publish
       - name: Rename Jar
         run: "mv build/libs/keyi-paperclip-${{ env.MC_VERSION }}-R0.1-SNAPSHOT-reobf.jar build/libs/keyi-${{ env.ref }}-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
       - name: Release Artifacts
