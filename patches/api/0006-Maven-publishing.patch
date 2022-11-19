@@ -1,0 +1,36 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: nostalgic853 <yuu8583@proton.me>
+Date: Sat, 19 Nov 2022 23:54:53 +0800
+Subject: [PATCH] Maven publishing
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index 8e64ccdb928bc38cb703e60c8ec31339a6f6d894..d52ac51e072ac3c25ce426c2864584277f0c7fc8 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -153,3 +153,24 @@ tasks.check {
+     dependsOn(scanJar)
+ }
+ // Paper end
++
++// KeYi start
++publishing {
++    repositories {
++        maven {
++            name = "githubPackage"
++            url = uri("https://maven.pkg.github.com/KeYiMC/KeYi")
++
++            credentials.username = System.getenv("GITHUB_USERNAME")
++            credentials.password = System.getenv("GITHUB_TOKEN")
++
++        }
++
++        publications {
++            register<MavenPublication>("gpr") {
++                from(components["java"])
++            }
++        }
++    }
++}
++// KeYi end
+\ No newline at end of file
