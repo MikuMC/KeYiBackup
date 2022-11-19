@@ -59,6 +59,17 @@ subprojects {
 
 }
 
+tasks.generateDevelopmentBundle {
+    apiCoordinates.set("cc.keyimc.keyi:keyi-api")
+    mojangApiCoordinates.set("io.papermc.paper:paper-mojangapi")
+    libraryRepositories.set(
+        listOf(
+            "https://repo.maven.apache.org/maven2/",
+            paperMavenPublicUrl,
+        )
+    )
+}
+
 paperweight {
     serverProject.set(project(":keyi-server"))
 
