@@ -4,23 +4,68 @@
   <h1>KeYi</h1>
   <h3>⚡ The next generation Minecraft server software aims to the balance of performance and stability.</h3>
   <h5>This project is still under heavy development, use it at your own risk!</h5>
+  <i><h5>KeYi, is the Chinese word "可以", means some thing is very OK!</h5></i>
 
 [![Discord](https://img.shields.io/discord/1030133252134027304?color=%235865f2&label=Discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/Sm2NsY5dpV)
 [![Tencent QQ](https://img.shields.io/badge/Tencent%23QQ-%2312B7F5?style=for-the-badge&logo=tencentqq&logoColor=white)](https://jq.qq.com/?_wv=1027&k=i2MG7npf)
 </div>
 
-# Features
+# Why another fork?
 
-- Lithium optimizations. (JettPack)
-- C2ME optimizations. (Mirai)
-- Suki optimizations.
-- Carpet Fixes optimizations.
-- Optimize VarInts. (Paper PR)
-- **(WIP)** Faster hopper algorithm.
-- **(WIP)** Faster fluid algorithm.
-- And more...
+The answer is quite simple.
+
+The existing forks doesn't meet up what our requires, so we made up a small team and created this fork.
+
+# Roadmap
+
+As you can see, this fork is designed to be stable, but also gain some performance improvements. 
+
+The improvements of the API is also being valued, so we will try our best to work on it.
+
+# API
+
+### Maven
+
+#### Adding repository
+
+```xml
+<repository>
+    <id>keyi</id>
+    <url>https://maven.pkg.github.com/KeYiMC/KeYi</url>
+</repository>
+```
+
+#### Adding dependency
+
+```xml
+<dependency>
+    <groupId>cc.keyimc.keyi</groupId>
+    <artifactId>keyi-api</artifactId>
+    <version>1.19.2-R0.1-SNAPSHOT</version>
+    <scope>provided</scope>
+</dependency>
+```
+
+### Gradle
+
+#### Adding repository
+
+```groovy
+repositories {
+    maven("https://maven.pkg.github.com/KeYiMC/KeYi")
+}
+```
+
+#### Adding dependency
+
+```groovy
+dependencies {
+    compileOnly("cc.keyimc.keyi:keyi-api:1.19.2-R0.1-SNAPSHOT")
+}
+```
 
 # Contributing
 
-We only accept contributions from people who can speak Chinese.<br>
-Join our Discord or QQ group for more information.
+Unfortunately, the rules of our community haven't been finished yet. 
+
+So at this time, if you want to contribute, you need to talk with us on Discord or Tencent QQ.
