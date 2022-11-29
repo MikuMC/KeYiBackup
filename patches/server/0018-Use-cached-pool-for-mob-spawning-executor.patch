@@ -5,7 +5,7 @@ Subject: [PATCH] Use cached pool for mob spawning executor
 
 
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 13d86c1fba2377808a5ef1e2820db445383af156..ae95e3af64811f6f149a01b9715d8fdd2c2583fa 100644
+index 0a1662fc8bffca26de909c980b828f7ab05aa5a3..ae95e3af64811f6f149a01b9715d8fdd2c2583fa 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -43,6 +43,7 @@ import java.util.Optional;
@@ -20,7 +20,7 @@ index 13d86c1fba2377808a5ef1e2820db445383af156..ae95e3af64811f6f149a01b9715d8fdd
      public volatile boolean abnormalExit = false; // Paper
      public boolean isIteratingOverLevels = false; // Paper
  
--    public gg.pufferfish.pufferfish.util.AsyncExecutor mobSpawnExecutor = new gg.pufferfish.pufferfish.util.AsyncExecutor("MobSpawning", () -> true); // Pufferfish - optimize mob spawning
+-    public gg.pufferfish.pufferfish.util.AsyncExecutor mobSpawnExecutor = new gg.pufferfish.pufferfish.util.AsyncExecutor("MobSpawning"); // Pufferfish - optimize mob spawning
 +    public ExecutorService mobSpawnExecutor; // Pufferfish - optimize mob spawning // KeYi - use cached pool
  
      public static <S extends MinecraftServer> S spin(Function<Thread, S> serverFactory) {

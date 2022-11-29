@@ -5,7 +5,7 @@ Subject: [PATCH] Player Skull API
 
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index 2400d9d488259f73f4ae02fe06b107e5c470a7dd..cc98f5aca737bcf226626029f83b7ddae51b87cb 100644
+index 965dabe484bf6276497389656e12d0363fb6513f..77c877118517717a6abf386d104b2c81094ae52a 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 @@ -26,6 +26,9 @@ import java.util.Optional;
@@ -26,7 +26,7 @@ index 2400d9d488259f73f4ae02fe06b107e5c470a7dd..cc98f5aca737bcf226626029f83b7dda
  import org.bukkit.map.MapCursor;
  import org.bukkit.map.MapView;
  import org.bukkit.metadata.MetadataValue;
-@@ -3103,4 +3107,28 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -3138,4 +3142,28 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
          this.getHandle().connection.send(packet);
      }
      // Purpur end

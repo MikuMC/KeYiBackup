@@ -507,7 +507,7 @@ index d1c7ab67cba881d96b7a5e9220130d86d0514304..309d1ce15aace9da4a84819e8511af2c
  
      public CraftFirework(CraftServer server, FireworkRocketEntity entity) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/generator/CustomChunkGenerator.java b/src/main/java/org/bukkit/craftbukkit/generator/CustomChunkGenerator.java
-index 382879562a808290cc4dd59dcd5022c6c22fb169..4c8e07dc44283b374ebe0a59339110d1f3507d1e 100644
+index 23b1725679d195380a902a3b03c6b6ad3aaede19..d554bd8e2fbaab8ee4a770563396544d5f447319 100644
 --- a/src/main/java/org/bukkit/craftbukkit/generator/CustomChunkGenerator.java
 +++ b/src/main/java/org/bukkit/craftbukkit/generator/CustomChunkGenerator.java
 @@ -40,13 +40,14 @@ import org.bukkit.craftbukkit.util.RandomSourceWrapper;
@@ -518,7 +518,7 @@ index 382879562a808290cc4dd59dcd5022c6c22fb169..4c8e07dc44283b374ebe0a59339110d1
  
  public class CustomChunkGenerator extends InternalChunkGenerator {
  
-     public final net.minecraft.world.level.chunk.ChunkGenerator delegate;
+     private final net.minecraft.world.level.chunk.ChunkGenerator delegate;
      private final ChunkGenerator generator;
      private final ServerLevel world;
 -    private final Random random = new Random();
