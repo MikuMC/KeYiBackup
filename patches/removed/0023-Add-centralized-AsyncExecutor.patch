@@ -2,7 +2,6 @@ From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: MartijnMuijsers <martijnmuijsers@live.nl>
 Date: Tue, 29 Nov 2022 12:35:35 +0100
 Subject: [PATCH] Add centralized AsyncExecutor
-./gs://www.gnu.org/licenses/agpl-3.0.html)
 
 This patch was taken from Gale.
 
