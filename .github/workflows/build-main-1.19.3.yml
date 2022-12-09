@@ -48,7 +48,7 @@ jobs:
       - name: Release Artifacts
         uses: marvinpinto/action-automatic-releases@latest
         with:
-          title: "[LTS] main/1.19.3 #${{ env.workflow }}"
+          title: "main/1.19.3 #${{ env.workflow }}"
           automatic_release_tag: "main-1.19.3"
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           files: "build/libs/keyi-main-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
