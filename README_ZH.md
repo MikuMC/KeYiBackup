@@ -16,9 +16,17 @@
 
 # 路线图
 
-如你所见，这个项目被设计为尽可能稳定的，但是同时也取得了一些性能提升。
+如你所见，这个项目被设计为尽可能稳定的，支持良好的 Purpur 分支，但是同时也取得了一些性能提升。
 
 对于 API 的改进也得到了我们的重视，所以我们正在这方面努力。
+
+# 版本
+
+| 版本   | 支持情况                         | 下载                                                         |
+| ------ | -------------------------------- | ------------------------------------------------------------ |
+| 1.18.2 | ❌                                | 不存在。                                                     |
+| 1.19.2 | ✔️ 长期支持至 2023 年 2 月 1 日。 | [稳定版](https://github.com/KeYiMC/KeYi/releases/tag/main-1.19.2)，[开发版](https://github.com/KeYiMC/KeYi/releases/tag/develop-1.19.2)。 |
+| 1.19.3 | ✔️                                | [稳定版](https://github.com/KeYiMC/KeYi/releases/tag/main-1.19.3)，[开发版](https://github.com/KeYiMC/KeYi/releases/tag/develop-1.19.3)。 |
 
 # API
 
