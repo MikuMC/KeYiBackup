@@ -44,12 +44,12 @@ jobs:
           export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
           ./gradlew publish
       - name: Rename Jar
-        run: "mv build/libs/keyi-paperclip-${{ env.MC_VERSION }}-R0.1-SNAPSHOT-reobf.jar build/libs/keyi-${{ env.ref }}-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
+        run: "mv build/libs/keyi-paperclip-${{ env.MC_VERSION }}-R0.1-SNAPSHOT-reobf.jar build/libs/keyi-main-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
       - name: Release Artifacts
         uses: marvinpinto/action-automatic-releases@latest
         with:
           title: "[LTS] main/1.19.2 #${{ env.workflow }}"
           automatic_release_tag: "main-1.19.2"
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          files: "build/libs/keyi-${{ env.ref }}-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
+          files: "build/libs/keyi-main-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
           prerelease: false

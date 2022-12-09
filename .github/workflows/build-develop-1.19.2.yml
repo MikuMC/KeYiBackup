@@ -37,12 +37,12 @@ jobs:
         run: |
           ./gradlew -Dorg.gradle.jvmargs="-Dgraal.CompilerConfiguration=enterprise -Dgraal.UsePriorityInlining=true -Dgraal.Vectorization=true -Dgraal.OptDuplication=true --add-modules jdk.incubator.vector" createReobfPaperclipJar --stacktrace --no-daemon
       - name: Rename Jar
-        run: "mv build/libs/keyi-paperclip-${{ env.MC_VERSION }}-R0.1-SNAPSHOT-reobf.jar build/libs/keyi-${{ env.ref }}-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
+        run: "mv build/libs/keyi-paperclip-${{ env.MC_VERSION }}-R0.1-SNAPSHOT-reobf.jar build/libs/keyi-develop-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
       - name: Release Artifacts
         uses: marvinpinto/action-automatic-releases@latest
         with:
           title: "[LTS] develop/1.19.2 #${{ env.workflow }}"
           automatic_release_tag: "develop-1.19.2"
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          files: "build/libs/keyi-${{ env.ref }}-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
+          files: "build/libs/keyi-develop-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
           prerelease: true
