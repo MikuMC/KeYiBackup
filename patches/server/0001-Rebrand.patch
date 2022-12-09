@@ -5,7 +5,7 @@ Subject: [PATCH] Rebrand
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 8ffc0d92ea29b95e5406ed81088ecf00e7679a97..96c012a57170fe1ec6954af7969b5c1371ea9ecf 100644
+index 7de4b51cb4afdcbdfb8d1dc32f56252d997e23a8..3ffa404efaac294d60c8430266f47dcbfb6d1592 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -7,7 +7,7 @@ plugins {
@@ -14,10 +14,10 @@ index 8ffc0d92ea29b95e5406ed81088ecf00e7679a97..96c012a57170fe1ec6954af7969b5c13
  dependencies {
 -    implementation(project(":purpur-api")) // Purpur
 +    implementation(project(":keyi-api")) // Purpur // KeYi
-     // Pufferfish start
-     implementation("io.papermc.paper:paper-mojangapi:1.19.2-R0.1-SNAPSHOT") {
+     implementation("io.papermc.paper:paper-mojangapi:1.19.3-R0.1-SNAPSHOT") {
          exclude("io.papermc.paper", "paper-api")
-@@ -78,13 +78,13 @@ tasks.jar {
+     }
+@@ -60,13 +60,13 @@ tasks.jar {
      manifest {
          val git = Git(rootProject.layout.projectDirectory.path)
          val gitHash = git("rev-parse", "--short=7", "HEAD").getText().trim()
@@ -28,7 +28,7 @@ index 8ffc0d92ea29b95e5406ed81088ecf00e7679a97..96c012a57170fe1ec6954af7969b5c13
          attributes(
              "Main-Class" to "org.bukkit.craftbukkit.Main",
              "Implementation-Title" to "CraftBukkit",
--            "Implementation-Version" to "git-Purpur-$implementationVersion",// Purpur
+-            "Implementation-Version" to "git-Purpur-$implementationVersion", // Purpur
 +            "Implementation-Version" to "git-KeYi-$gitBranch-$implementationVersion",// Purpur // KeYi
              "Implementation-Vendor" to date, // Paper
              "Specification-Title" to "Bukkit",
@@ -166,10 +166,10 @@ index fba5dbdb7bcbb55400ef18342c9b54612972a718..005983d56b283e54e2cf450f1e9f985a
  
      private static int fetchDistanceFromSiteApi(int jenkinsBuild, @Nullable String siteApiVersion) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 2491785f5edd782b74189bef33eeffe13288f3da..3a67aaa39daf1fb86938f53e129aadfb686583b0 100644
+index 80d4167edd7c87240ce02ae122153976015d548a..120b798742b1a4524eefa4b5387a8ffc203e523c 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -249,7 +249,7 @@ import javax.annotation.Nullable; // Paper
+@@ -262,7 +262,7 @@ import javax.annotation.Nullable; // Paper
  import javax.annotation.Nonnull; // Paper
  
  public final class CraftServer implements Server {
@@ -192,7 +192,7 @@ index fb87620c742ff7912f5e8ccd2a7930dd605576d9..d779212cbb719a1d923a24823135c5d3
  
          if (stream != null) {
 diff --git a/src/main/java/org/purpurmc/purpur/PurpurConfig.java b/src/main/java/org/purpurmc/purpur/PurpurConfig.java
-index ccca392a45cb05abb55ddd5c6c36e6f9c7a5d171..f02a183fa2fd359456063b55c6c087e802c54f7b 100644
+index 76cbfb7e900bf2698776f54cfe498f4b42965221..cd60f79acdd2307bdae48a11d4f5ec3ff3fa225a 100644
 --- a/src/main/java/org/purpurmc/purpur/PurpurConfig.java
 +++ b/src/main/java/org/purpurmc/purpur/PurpurConfig.java
 @@ -244,7 +244,7 @@ public class PurpurConfig {

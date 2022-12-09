@@ -7,10 +7,10 @@ Original code by YatopiaMC, licensed under MIT
 You can find the original code on https://github.com/YatopiaMC/Yatopia
 
 diff --git a/src/main/java/net/minecraft/server/Eula.java b/src/main/java/net/minecraft/server/Eula.java
-index 920a0e6540bc8b8ce34dfaf57d58c200013b7b2c..94f05d32304f8a8c2aa294318617851adc55988d 100644
+index 5528a4b7a67e0c257966c587437006004a2e1292..032e45e0addd89ad8b028803ea6d2135ffed5c05 100644
 --- a/src/main/java/net/minecraft/server/Eula.java
 +++ b/src/main/java/net/minecraft/server/Eula.java
-@@ -16,12 +16,26 @@ public class Eula {
+@@ -16,10 +16,24 @@ public class Eula {
  
      public Eula(Path eulaFile) {
          this.file = eulaFile;
@@ -35,8 +35,5 @@ index 920a0e6540bc8b8ce34dfaf57d58c200013b7b2c..94f05d32304f8a8c2aa294318617851a
 +
 +    private boolean readFile(java.nio.file.Path path) {
          try {
--            InputStream inputStream = Files.newInputStream(this.file);
-+            InputStream inputStream = Files.newInputStream(path);
- 
              boolean var3;
-             try {
+             try (InputStream inputStream = Files.newInputStream(this.file)) {

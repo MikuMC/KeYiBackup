@@ -5,10 +5,10 @@ Subject: [PATCH] Maven publishing
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 8e64ccdb928bc38cb703e60c8ec31339a6f6d894..d52ac51e072ac3c25ce426c2864584277f0c7fc8 100644
+index 051b2db3548d1b24f591f05eece0c8241475e9bf..85e30cd20f0f8534724ce4e309e28ef0031f683c 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -153,3 +153,24 @@ tasks.check {
+@@ -145,3 +145,24 @@ tasks.check {
      dependsOn(scanJar)
  }
  // Paper end

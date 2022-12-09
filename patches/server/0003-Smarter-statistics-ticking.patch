@@ -10,13 +10,13 @@ Original code by YatopiaMC, licensed under MIT
 You can find the original code on https://github.com/YatopiaMC/Yatopia
 
 diff --git a/src/main/java/net/minecraft/world/entity/player/Player.java b/src/main/java/net/minecraft/world/entity/player/Player.java
-index 1b7e38538881ba00ffdbe9226952627151532c5c..119e26e32654c834ff1158836ce56ba8985c09e8 100644
+index 5a482f4c2a86d3f93fbbe8fc8fd29b07ebd50dc8..0b50301046234551c51b5ea9add450b6310ca73a 100644
 --- a/src/main/java/net/minecraft/world/entity/player/Player.java
 +++ b/src/main/java/net/minecraft/world/entity/player/Player.java
-@@ -315,19 +315,21 @@ public abstract class Player extends LivingEntity {
+@@ -308,19 +308,21 @@ public abstract class Player extends LivingEntity {
+         this.moveCloak();
          if (!this.level.isClientSide) {
              this.foodData.tick(this);
-             this.wardenSpawnTracker.tick();
 -            this.awardStat(Stats.PLAY_TIME);
 -            this.awardStat(Stats.TOTAL_WORLD_TIME);
 -            if (this.isAlive()) {

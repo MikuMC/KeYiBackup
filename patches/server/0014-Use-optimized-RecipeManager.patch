@@ -11,7 +11,7 @@ This is a fully vanilla optimization. Improves: [Blast]Furnace/Campfire/Smoker/S
 This was mostly made for the auto crafting table, since the performance boost is much more visible while using that mod
 
 diff --git a/src/main/java/net/minecraft/world/item/crafting/RecipeManager.java b/src/main/java/net/minecraft/world/item/crafting/RecipeManager.java
-index 4872f70977e73c889fe6e2339d00ebc64459613d..7f6bd5fb335ea33c52d510461a1f17371c36576a 100644
+index 2f712bfc1f717ba410bf34669d7b0a919ca218cc..fa7f4c3e14aa4ec11187f7c0f96cb4504ee38547 100644
 --- a/src/main/java/net/minecraft/world/item/crafting/RecipeManager.java
 +++ b/src/main/java/net/minecraft/world/item/crafting/RecipeManager.java
 @@ -11,14 +11,7 @@ import com.google.gson.JsonParseException;

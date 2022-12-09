@@ -1,0 +1,24 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: nostalgic853 <yuu8583@proton.me>
+Date: Fri, 9 Dec 2022 23:13:43 +0800
+Subject: [PATCH] Revert "Spark Profiler"
+
+This reverts commit 2f3f630834d34ee625be79fac6bc429d0e10d929.
+
+diff --git a/src/main/java/org/bukkit/plugin/SimplePluginManager.java b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
+index 2843545c6281da1f47e24431023c56e9592cef16..08f5892f175b898e3aa5cfc7de6639b818330927 100644
+--- a/src/main/java/org/bukkit/plugin/SimplePluginManager.java
++++ b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
+@@ -167,12 +167,6 @@ public final class SimplePluginManager implements PluginManager {
+                 server.getLogger().log(Level.SEVERE, "Could not load '" + file.getPath() + "' in folder '" + file.getParentFile().getPath() + "'", ex); // Paper
+                 continue;
+             }
+-            // Purpur start
+-            if (!Boolean.getBoolean("Purpur.IReallyDontWantSpark") && plugins.containsKey(description.getName()) && description.getName().equalsIgnoreCase("spark")) {
+-                server.getLogger().log(Level.INFO, "Purpur: Using user-provided spark plugin instead of our own.");
+-                continue;
+-            }
+-            // Purpur end
+ 
+             File replacedFile = plugins.put(description.getName(), file);
+             if (replacedFile != null) {

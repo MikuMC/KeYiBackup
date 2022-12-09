@@ -10,10 +10,10 @@ this patch is focused around the sensors used for ai
 delete the line of sight cache less often and use a faster nearby comparison
 
 diff --git a/src/main/java/net/minecraft/world/entity/LivingEntity.java b/src/main/java/net/minecraft/world/entity/LivingEntity.java
-index f23829690d2be20af50256e4d985e3e342415d54..995fc228430ac6c8af8654aa1137c7f66668f622 100644
+index ee87227269b36ff758dceb8dcf20b9367470d6df..01168bb3727399cac73fbf8aa9ae2316a702586d 100644
 --- a/src/main/java/net/minecraft/world/entity/LivingEntity.java
 +++ b/src/main/java/net/minecraft/world/entity/LivingEntity.java
-@@ -1026,20 +1026,22 @@ public abstract class LivingEntity extends Entity {
+@@ -1027,23 +1027,25 @@ public abstract class LivingEntity extends Entity {
          }
  
          if (entity != null) {
@@ -35,16 +35,20 @@ index f23829690d2be20af50256e4d985e3e342415d54..995fc228430ac6c8af8654aa1137c7f6
 +            else if (entitytypes == EntityType.CREEPER && this.getItemBySlot(EquipmentSlot.HEAD).is(Items.CREEPER_HEAD)) {
                  d0 *= entity.level.purpurConfig.creeperHeadVisibilityPercent;
              }
+-            else if ((entitytypes == EntityType.PIGLIN || entitytypes == EntityType.PIGLIN_BRUTE) && itemstack.is(Items.PIGLIN_HEAD)) {
++            else if ((entitytypes == EntityType.PIGLIN || entitytypes == EntityType.PIGLIN_BRUTE) && this.getItemBySlot(EquipmentSlot.HEAD).is(Items.PIGLIN_HEAD)) {
+                 d0 *= entity.level.purpurConfig.piglinHeadVisibilityPercent;
+             }
              // Purpur end
 +            // petal end
  
              // Purpur start
              if (entity instanceof LivingEntity entityliving) {
 diff --git a/src/main/java/net/minecraft/world/entity/Mob.java b/src/main/java/net/minecraft/world/entity/Mob.java
-index bc18c166ca776b0ef6e816eb034e410c391258b6..e68533ff29c882e955c150130e3260584cc250b0 100644
+index db23506c44de328c74eb509caf6cc4d8d91cbc52..caf2fc594bc5143e8ead8c574963224f63b3bc7a 100644
 --- a/src/main/java/net/minecraft/world/entity/Mob.java
 +++ b/src/main/java/net/minecraft/world/entity/Mob.java
-@@ -884,10 +884,10 @@ public abstract class Mob extends LivingEntity {
+@@ -900,10 +900,10 @@ public abstract class Mob extends LivingEntity {
              return;
          }
          // Paper end

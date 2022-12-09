@@ -21,10 +21,10 @@ index 8884a2471b4b7c5cabf1c0c767710ba69c7ae4ec..4f08f2e40f5bc3bc5a87bf3a34945afd
  }
 \ No newline at end of file
 diff --git a/src/main/java/net/minecraft/world/entity/item/ItemEntity.java b/src/main/java/net/minecraft/world/entity/item/ItemEntity.java
-index d7e102024b495067335fe008ec1649708f3a4016..f1aed20abb804c65b9c490e14f32f4074a32e893 100644
+index ee5ec376cf7495ed99ee822a7b26978c3c107098..a85cef2b26cf876025c9436606eee24a3354f4da 100644
 --- a/src/main/java/net/minecraft/world/entity/item/ItemEntity.java
 +++ b/src/main/java/net/minecraft/world/entity/item/ItemEntity.java
-@@ -296,7 +296,7 @@ public class ItemEntity extends Entity {
+@@ -288,7 +288,7 @@ public class ItemEntity extends Entity {
          ItemStack itemstack1 = other.getItem();
  
          if (Objects.equals(this.getOwner(), other.getOwner()) && ItemEntity.areMergable(itemstack, itemstack1)) {
