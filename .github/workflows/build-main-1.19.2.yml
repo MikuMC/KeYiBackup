@@ -1,8 +1,8 @@
-name: Build (main)
+name: Build (main/1.19.2)
 on:
   push:
     branches:
-      - "main"
+      - "main/1.19.2"
 
 env:
   MC_VERSION: "1.19.2"
@@ -48,8 +48,8 @@ jobs:
       - name: Release Artifacts
         uses: marvinpinto/action-automatic-releases@latest
         with:
-          title: "[${{ env.ref }}] #${{ env.workflow }}"
-          automatic_release_tag: "main-latest"
+          title: "[LTS] main/1.19.2 #${{ env.workflow }}"
+          automatic_release_tag: "main-1.19.2"
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           files: "build/libs/keyi-${{ env.ref }}-${{ env.MC_VERSION }}-${{ env.workflow }}.jar"
           prerelease: false
