@@ -49,7 +49,7 @@ The improvements of the API is also being valued, so we will try our best to wor
 <dependency>
     <groupId>cc.keyimc.keyi</groupId>
     <artifactId>keyi-api</artifactId>
-    <version>1.19.2-R0.1-SNAPSHOT</version>
+    <version>1.19.3-R0.1-SNAPSHOT</version>
     <scope>provided</scope>
 </dependency>
 ```
@@ -68,7 +68,7 @@ repositories {
 
 ```groovy
 dependencies {
-    compileOnly("cc.keyimc.keyi:keyi-api:1.19.2-R0.1-SNAPSHOT")
+    compileOnly("cc.keyimc.keyi:keyi-api:1.19.3-R0.1-SNAPSHOT")
 }
 ```
 
