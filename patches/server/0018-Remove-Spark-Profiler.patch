@@ -1,12 +1,12 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: nostalgic853 <yuu8583@proton.me>
 Date: Fri, 9 Dec 2022 23:09:09 +0800
-Subject: [PATCH] Revert "Spark Profiler"
+Subject: [PATCH] Remove "Spark Profiler"
 
 This reverts commit 00657e75cfec6d86bbdcb1126aabcf7177bec31a.
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 120b798742b1a4524eefa4b5387a8ffc203e523c..5e56cc967f09fc29f1fa4976765a8a837e3087cf 100644
+index e35453e1b105489db6715c3885cee88097ef4e97..973d40c8c25856f093f11a9c986e0325b4b48fff 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -448,38 +448,7 @@ public final class CraftServer implements Server {

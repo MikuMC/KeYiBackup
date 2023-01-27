@@ -1,12 +1,12 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: nostalgic853 <yuu8583@proton.me>
 Date: Fri, 9 Dec 2022 23:13:43 +0800
-Subject: [PATCH] Revert "Spark Profiler"
+Subject: [PATCH] Remove "Spark Profiler"
 
 This reverts commit 2f3f630834d34ee625be79fac6bc429d0e10d929.
 
 diff --git a/src/main/java/org/bukkit/plugin/SimplePluginManager.java b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
-index 2843545c6281da1f47e24431023c56e9592cef16..08f5892f175b898e3aa5cfc7de6639b818330927 100644
+index 37b42f155f7e1f743ea49d957123f2dc05f3b3fd..ba869354adc59db2fc547c481c1ed4d5d0af23b7 100644
 --- a/src/main/java/org/bukkit/plugin/SimplePluginManager.java
 +++ b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
 @@ -167,12 +167,6 @@ public final class SimplePluginManager implements PluginManager {

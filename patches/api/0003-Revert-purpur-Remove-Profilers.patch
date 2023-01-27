@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: nostalgic853 <yuu8583@proton.me>
 Date: Mon, 24 Oct 2022 23:28:31 +0800
-Subject: [PATCH] Revert purpur "Remove Timings"
+Subject: [PATCH] Revert purpur "Remove Profilers"
 
 This reverts commit 0004242a19885c29a4cf68c510411ed70cf6e439.
 

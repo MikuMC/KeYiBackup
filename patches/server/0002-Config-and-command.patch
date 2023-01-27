@@ -240,12 +240,12 @@ index 0000000000000000000000000000000000000000..510eea6066fb0743a9c561eb577de9d9
 +    }
 +}
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-index 5b44f7512f21dba3f3306c7f42fa2d78e600847a..8fe0a9c2989016821ff673838c0041b38aff8fb2 100644
+index 46858fb57f122033a68aeb4ad3943132a677fb46..5dde53bd71e7768ea898acca02fb18ce66ea2dff 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-@@ -232,6 +232,16 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
-         // Paper end
-         // gg.pufferfish.pufferfish.PufferfishConfig.pufferfishFile = (java.io.File) options.valueOf("pufferfish-settings"); // Purpur
+@@ -234,6 +234,16 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+         gg.pufferfish.pufferfish.PufferfishConfig.load(); // Pufferfish
+         gg.pufferfish.pufferfish.PufferfishCommand.init(); // Pufferfish
  
 +        // KeYi start - init config
 +        try {
@@ -261,7 +261,7 @@ index 5b44f7512f21dba3f3306c7f42fa2d78e600847a..8fe0a9c2989016821ff673838c0041b3
          this.setFlightAllowed(dedicatedserverproperties.allowFlight);
          this.setMotd(dedicatedserverproperties.motd);
 diff --git a/src/main/java/org/bukkit/craftbukkit/Main.java b/src/main/java/org/bukkit/craftbukkit/Main.java
-index 72810905cc50af204161a02872d599af4aba8dbb..175d75a929d219f24c78cabe1558b4ebd22e1235 100644
+index 082d0516c80cf231dd7ceb454508bb77407c499b..9cf35ea1393ba68a2e6d1bb808d6be6497bc48f5 100644
 --- a/src/main/java/org/bukkit/craftbukkit/Main.java
 +++ b/src/main/java/org/bukkit/craftbukkit/Main.java
 @@ -180,6 +180,14 @@ public class Main {

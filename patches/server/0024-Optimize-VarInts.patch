@@ -1,17 +1,17 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: astei <andrew@steinborn.me>
 Date: Sat, 1 Oct 2022 09:56:47 +0200
-Subject: [PATCH] PaperPR Optimize VarInts
+Subject: [PATCH] Optimize VarInts
 
 Original license: GPLv3
 Original project: https://github.com/PaperMC/Velocity
 Paper pull request: https://github.com/PaperMC/Paper/pull/8418
 
 diff --git a/src/main/java/net/minecraft/network/FriendlyByteBuf.java b/src/main/java/net/minecraft/network/FriendlyByteBuf.java
-index a7b6e22daf64abca311bc5771192a3c09368537f..c264aa4c8db4d68c75364206893e6aff7f2e483e 100644
+index 314318a21b6fa9e827945d8996c6ed0f9679a4eb..2e1cf850f1b26f25ea09178941f4c789d65d851f 100644
 --- a/src/main/java/net/minecraft/network/FriendlyByteBuf.java
 +++ b/src/main/java/net/minecraft/network/FriendlyByteBuf.java
-@@ -89,15 +89,18 @@ public class FriendlyByteBuf extends ByteBuf {
+@@ -95,15 +95,18 @@ public class FriendlyByteBuf extends ByteBuf {
          this.source = parent;
      }
  
@@ -37,7 +37,7 @@ index a7b6e22daf64abca311bc5771192a3c09368537f..c264aa4c8db4d68c75364206893e6aff
  
      public static int getVarLongSize(long value) {
          for (int j = 1; j < 10; ++j) {
-@@ -505,7 +508,22 @@ public class FriendlyByteBuf extends ByteBuf {
+@@ -567,7 +570,22 @@ public class FriendlyByteBuf extends ByteBuf {
          return new UUID(this.readLong(), this.readLong());
      }
  

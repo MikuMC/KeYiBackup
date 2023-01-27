@@ -1,0 +1,269 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: nostalgic853 <yuu8583@proton.me>
+Date: Sat, 17 Dec 2022 22:12:03 +0800
+Subject: [PATCH] New KeYi config system
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index 0cc1db1138e2d34eaee62ec60c506d03497d3613..5491526aa4728a253cbb4000336bed131456f1ce 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -60,6 +60,8 @@ dependencies {
+     testImplementation("org.hamcrest:hamcrest-library:1.3")
+ 
+     implementation("io.netty:netty-all:4.1.77.Final"); // Paper - Bump netty
++
++    implementation("com.electronwill.night-config:toml:3.6.0") // KeYi - nightconfig
+ }
+ 
+ val craftbukkitPackageVersion = "1_19_R2" // Paper
+diff --git a/src/main/java/cc/keyimc/keyi/KeyiCommand.java b/src/main/java/cc/keyimc/keyi/KeyiCommand.java
+index 5ec7a427abba42de2fdcb480586cc17e74bc5c52..09290d8a7d846be5645e27eecce261a1f4172e01 100644
+--- a/src/main/java/cc/keyimc/keyi/KeyiCommand.java
++++ b/src/main/java/cc/keyimc/keyi/KeyiCommand.java
+@@ -1,5 +1,6 @@
+ package cc.keyimc.keyi;
+ 
++import cc.keyimc.keyi.config.KGlobalConfig;
+ import cc.keyimc.keyi.utils.TextUtil;
+ import net.minecraft.server.MinecraftServer;
+ import org.bukkit.Bukkit;
+@@ -45,7 +46,7 @@ public final class KeyiCommand extends Command {
+             }
+ 
+             if (args[0].equalsIgnoreCase("reload")) {
+-                KeyiConfig.reload();
++                KGlobalConfig.getInstance().init();
+                 sender.sendMessage(TextUtil.deserialize("<#00f898>Reload completed!"));
+ 
+                 var minecraftServer = MinecraftServer.getServer();
+diff --git a/src/main/java/cc/keyimc/keyi/KeyiConfig.java b/src/main/java/cc/keyimc/keyi/abandoned/KeyiConfig.java
+similarity index 99%
+rename from src/main/java/cc/keyimc/keyi/KeyiConfig.java
+rename to src/main/java/cc/keyimc/keyi/abandoned/KeyiConfig.java
+index 4f08f2e40f5bc3bc5a87bf3a34945afdec65f288..ffb825bf9eda4fffebb4ea8e64eefa966f7a4051 100644
+--- a/src/main/java/cc/keyimc/keyi/KeyiConfig.java
++++ b/src/main/java/cc/keyimc/keyi/abandoned/KeyiConfig.java
+@@ -1,5 +1,5 @@
+ 
+-package cc.keyimc.keyi;
++package cc.keyimc.keyi.abandoned;
+ 
+ import com.google.common.base.Throwables;
+ import com.google.common.collect.ImmutableMap;
+diff --git a/src/main/java/cc/keyimc/keyi/abandoned/package-info.java b/src/main/java/cc/keyimc/keyi/abandoned/package-info.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..7b731c9307eb9f2a7ffa629f1716cda26b00d5f2
+--- /dev/null
++++ b/src/main/java/cc/keyimc/keyi/abandoned/package-info.java
+@@ -0,0 +1,6 @@
++package cc.keyimc.keyi.abandoned;
++
++/**
++ * Classes in these package are abandoned!
++ * We won't use it anymore, so we moved them to here as a backup.
++ */
+\ No newline at end of file
+diff --git a/src/main/java/cc/keyimc/keyi/config/KGlobalConfig.java b/src/main/java/cc/keyimc/keyi/config/KGlobalConfig.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..72720a4893fc010c2076476a0f239cd625ac3175
+--- /dev/null
++++ b/src/main/java/cc/keyimc/keyi/config/KGlobalConfig.java
+@@ -0,0 +1,105 @@
++package cc.keyimc.keyi.config;
++
++import com.electronwill.nightconfig.core.file.CommentedFileConfig;
++
++import java.io.File;
++import java.io.IOException;
++
++public class KGlobalConfig {
++    private static final KGlobalConfig INSTANCE;
++
++    private File file;
++    private CommentedFileConfig fileConfig;
++
++    static {
++        INSTANCE = new KGlobalConfig();
++    }
++
++    public static KGlobalConfig getInstance() {
++        return INSTANCE;
++    }
++
++    private KGlobalConfig() {
++    }
++
++    public void init() {
++        File folder = new File("." + File.separator + "/keyi/");
++
++        if (!folder.exists()) {
++            folder.mkdirs();
++        }
++
++        file = new File(folder, "keyi_config.toml");
++
++        if (!file.exists()) {
++            try {
++                file.createNewFile();
++            } catch (IOException e) {
++                e.printStackTrace();
++            }
++        }
++
++        fileConfig = CommentedFileConfig.ofConcurrent(file);
++        
++        fileConfig.load();
++        initValues();
++        fileConfig.save();
++    }
++
++    private <T> T get(String key, T defaultValue) {
++        if (fileConfig.contains(key)) {
++            return fileConfig.get(key);
++        }
++        fileConfig.set(key, defaultValue);
++        return defaultValue;
++    }
++
++    // Basic values
++    public int version = 2;
++    public boolean verbose = false;
++
++    // Performance settings
++    public boolean spigotDropsMergingMechanism = true;
++
++    // Bug-fixes settings
++    public boolean fixTripwireDuping = true;
++
++    // Misc settings
++    public boolean rootUserWarning = true;
++    public boolean offlineModeWarning = true;
++    public boolean proxyUnsafeWarning = true;
++
++    private void initValues() {
++        verbose = get("verbose", verbose);
++        version = get("dont-touch-these-values-down-below.version", version);
++
++        // Performance settings
++        spigotDropsMergingMechanism = get("performance.use-spigot-drops-merging-mechanism", spigotDropsMergingMechanism);
++
++        // Bug-fixes settings
++        fixTripwireDuping = get("bug-fixes.fix-tripwire-duping", fixTripwireDuping);
++
++        // Misc settings
++        rootUserWarning = get("misc.root-user-warning", rootUserWarning);
++        offlineModeWarning = get("misc.offline-mode-warning", offlineModeWarning);
++        proxyUnsafeWarning = get("misc.proxy-unsafe-warning", proxyUnsafeWarning);
++
++        initComments();
++    }
++
++    private void initComments() {
++        fileConfig.setComment("verbose", " Should debug output be enabled? You don't need to change this unless you really know what you need.");
++        fileConfig.setComment("dont-touch-these-values-down-below.version", " DO NOT TOUCH THIS!!!");
++
++        // Performance settings
++        fileConfig.setComment("performance.use-spigot-drops-merging-mechanism", " Should large drops stack should be merged into smaller drops stack?");
++
++        // Bug-fixes settings
++        fileConfig.setComment("bug-fixes.fix-tripwire-duping", " Should Paper's tripwire duping fix be enabled? By disabling this you are able to duping tripwires!");
++
++        // Misc settings
++        fileConfig.setComment("misc.root-user-warning", " Should display warnings while this server is running on a root/administrator user?");
++        fileConfig.setComment("misc.offline-mode-warning", " Should display warnings while this server is running in offline/insecure mode?");
++        fileConfig.setComment("misc.proxy-unsafe-warning", " Should display warnings while this server is running in proxy mode?");
++    }
++}
+diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
+index 8aeb2aa9ccba986163441cc428c2804de438288c..b217cb396b3f6e79c968a5614cce0459bb818445 100644
+--- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
++++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
+@@ -63,6 +63,7 @@ import org.bukkit.event.server.ServerCommandEvent;
+ import org.bukkit.craftbukkit.util.Waitable;
+ import org.bukkit.event.server.RemoteServerCommandEvent;
+ // CraftBukkit end
++import cc.keyimc.keyi.config.KGlobalConfig; // KeYi
+ 
+ public class DedicatedServer extends MinecraftServer implements ServerInterface {
+ 
+@@ -180,7 +181,7 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+         }
+ 
+         // Paper start - detect running as root
+-        if (io.papermc.paper.util.ServerEnvironment.userIsRootOrAdmin() && cc.keyimc.keyi.KeyiConfig.enableRootUserWarning) { // KeYi start - let user decide if we should warn
++        if (io.papermc.paper.util.ServerEnvironment.userIsRootOrAdmin() && KGlobalConfig.getInstance().rootUserWarning) { // KeYi start - let user decide if we should warn
+             DedicatedServer.LOGGER.warn("****************************");
+             DedicatedServer.LOGGER.warn("YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.");
+             DedicatedServer.LOGGER.warn("YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.");
+@@ -236,9 +237,9 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+ 
+         // KeYi start - init config
+         try {
+-            cc.keyimc.keyi.KeyiConfig.init((java.io.File) options.valueOf("keyi-settings"));
++            KGlobalConfig.getInstance().init();
+         }catch (Exception e) {
+-            LOGGER.error("Failed to load keyi.yml!", e);
++            logger.log(Level.ERROR, "Failed to load KeYi config!", e);
+         }
+         // KeYi end
+ 
+@@ -322,14 +323,14 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+ 
+         if (!this.usesAuthentication()) {
+             // KeYi start - let users choose if we should warn while running in offline mode
+-            if (cc.keyimc.keyi.KeyiConfig.enableOfflineModeWarning) {
++            if (KGlobalConfig.getInstance().offlineModeWarning) {
+                 DedicatedServer.LOGGER.warn("**** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!");
+                 DedicatedServer.LOGGER.warn("The server will make no attempt to authenticate usernames. Beware.");
+                 DedicatedServer.LOGGER.warn("To change this, set \"online-mode\" to \"true\" in the server.properties file."); // KeYi - move up
+             }
+             // KeYi end
+             // Spigot start
+-            if (io.papermc.paper.configuration.GlobalConfiguration.get().proxies.isProxyOnlineMode() && cc.keyimc.keyi.KeyiConfig.enableProxyUnsafeWarning) { // Purpur // KeYi - Let users decide if we should warn while running in proxy mode
++            if (io.papermc.paper.configuration.GlobalConfiguration.get().proxies.isProxyOnlineMode() && KGlobalConfig.getInstance().proxyUnsafeWarning) { // Purpur // KeYi - Let users decide if we should warn while running in proxy mode
+                 DedicatedServer.LOGGER.warn("Whilst this makes it possible to use BungeeCord or Velocity, unless access to your server is properly restricted, it also opens up the ability for hackers to connect with any username they choose."); // Purpur
+                 DedicatedServer.LOGGER.warn("Please see http://www.spigotmc.org/wiki/firewall-guide/ for further information.");
+             } else {
+diff --git a/src/main/java/net/minecraft/world/entity/item/ItemEntity.java b/src/main/java/net/minecraft/world/entity/item/ItemEntity.java
+index 2bcdd7232377784c548c228e4768697ef6918f2b..cf2b1232ab704e485695cb33ce8be05a3fcc678e 100644
+--- a/src/main/java/net/minecraft/world/entity/item/ItemEntity.java
++++ b/src/main/java/net/minecraft/world/entity/item/ItemEntity.java
+@@ -35,6 +35,7 @@ import org.bukkit.event.entity.EntityPickupItemEvent;
+ import org.bukkit.event.player.PlayerPickupItemEvent;
+ // CraftBukkit end
+ import org.bukkit.event.player.PlayerAttemptPickupItemEvent; // Paper
++import cc.keyimc.keyi.config.KGlobalConfig; // KeYi
+ 
+ public class ItemEntity extends Entity {
+ 
+@@ -294,7 +295,7 @@ public class ItemEntity extends Entity {
+         ItemStack itemstack1 = other.getItem();
+ 
+         if (Objects.equals(this.getOwner(), other.getOwner()) && ItemEntity.areMergable(itemstack, itemstack1)) {
+-            if (cc.keyimc.keyi.KeyiConfig.useSpigotItemMergingMechanism || itemstack1.getCount() < itemstack.getCount()) { // Spigot // KeYi
++            if (KGlobalConfig.getInstance().spigotDropsMergingMechanism || itemstack1.getCount() < itemstack.getCount()) { // Spigot // KeYi
+                 ItemEntity.merge(this, itemstack, other, itemstack1);
+             } else {
+                 ItemEntity.merge(other, itemstack1, this, itemstack);
+diff --git a/src/main/java/net/minecraft/world/level/block/TripWireHookBlock.java b/src/main/java/net/minecraft/world/level/block/TripWireHookBlock.java
+index b37a5d643dc07eaa0808b972f43281f2e24d3394..02b3d90227f37190d327b5530d5aafd687d123b9 100644
+--- a/src/main/java/net/minecraft/world/level/block/TripWireHookBlock.java
++++ b/src/main/java/net/minecraft/world/level/block/TripWireHookBlock.java
+@@ -27,6 +27,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
+ import net.minecraft.world.phys.shapes.CollisionContext;
+ import net.minecraft.world.phys.shapes.VoxelShape;
+ import org.bukkit.event.block.BlockRedstoneEvent; // CraftBukkit
++import cc.keyimc.keyi.config.KGlobalConfig;// KeYi
+ 
+ public class TripWireHookBlock extends Block {
+ 
+@@ -147,7 +148,7 @@ public class TripWireHookBlock extends Block {
+                 boolean flag7 = (Boolean) iblockdata2.getValue(TripWireBlock.POWERED);
+ 
+                 flag5 |= flag6 && flag7;
+-                if (k != i || !tripWireBeingRemoved || !flag6 || cc.keyimc.keyi.KeyiConfig.fixTripwireDuping) // Paper - don't update the tripwire again if being removed and not disarmed // KeYi
++                if (k != i || !tripWireBeingRemoved || !flag6 || KGlobalConfig.getInstance().fixTripwireDuping) // Paper - don't update the tripwire again if being removed and not disarmed // KeYi
+                 aiblockdata[k] = iblockdata2;
+                 if (k == i) {
+                     world.scheduleTick(pos, (Block) this, 10);
